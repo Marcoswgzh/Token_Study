@@ -517,8 +517,8 @@ def _recover_tab() -> None:
         if st.button("←", key=f"recover_back_{current_step}"):
             if current_step == 3:
                 st.session_state.token_verified = False
-                _go_to_recovery_step(current_step - 1)
-                _fragment_rerun()
+            _go_to_recovery_step(current_step - 1)
+            _fragment_rerun()
 
     if step == 1:
         with st.form("recover_request", enter_to_submit=False):
