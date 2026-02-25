@@ -2,8 +2,6 @@
 
 Repository for our computer security project on account recovery mechanisms (password reset tokens, attack simulations, and defenses).
 
-Current status: project skeleton. The goal of this structure is to keep implementation, experiments, and report artifacts separate from the start.
-
 ## What will be built here
 
 - Minimal authentication + password recovery flow in Python
