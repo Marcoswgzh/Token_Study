@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "recovery-project"
+version = "0.1.0"
+description = "Experimental platform for evaluating account recovery security"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "Group 8" }
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.6"
+]
+api = [
+  "fastapi>=0.115",
+  "uvicorn>=0.30"
+]
+analysis = [
+  "pandas>=2.2",
+  "matplotlib>=3.9",
+  "pyyaml>=6.0"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+addopts = "-q"

@@ -1,0 +1,14 @@
+# RQ3: effect of rate limiting on attack success and legitimate recovery usability
+name: rq3_rate_limit_defense
+trials: 1000
+attack_attempt_budget: 500
+attack_rate_per_second: 10
+token_policy:
+  length: 6
+  alphabet: "0123456789ABCDEF"
+  ttl_seconds: 300
+  single_use: true
+rate_limit_policy:
+  enabled: true
+  max_attempts: 5
+  window_seconds: 60
