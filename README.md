@@ -48,3 +48,14 @@ source .venv/bin/activate
 pip install -e .[dev,analysis]
 pytest
 ```
+
+## Demo UI (Streamlit)
+
+If you want a quick UI for the authentication/recovery flow:
+
+```bash
+pip install -e .[dev,ui]
+streamlit run src/recovery_project/ui/streamlit_app.py
+```
+
+The app looks for `cute_robot.json` in the project root (or `assets/animations/cute_robot.json`).
