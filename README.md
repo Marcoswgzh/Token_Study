@@ -59,3 +59,8 @@ streamlit run src/recovery_project/ui/streamlit_app.py
 ```
 
 The app looks for `cute_robot.json` in the project root (or `assets/animations/cute_robot.json`).
+
+## Architecture
+
+Authentication and account-recovery architecture:
+- `docs/architecture/authentication_architecture.md`
