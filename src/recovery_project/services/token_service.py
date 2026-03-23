@@ -7,14 +7,36 @@ import string
 import itertools
 import time
 
+# This token generation and validation is mainly for the first reasearch question, where we have to vary the entropy of the token
+
+# Characters included in the token. We can increase this by adding string.digits (digits from 0 to 9) and/or string.punctuation (special characters)
 alphabet = string.ascii_letters
 
+# Generates the token using a given length. secrets.choice takes a random character from a sequence
 def generate_token(length):
     token = ""
     for i in range(length):
         token += secrets.choice(alphabet)
     return token
 
+# Splits the alphabet into chunksize chunks
+def split_string(s, chunksize):
+    chunks = []
+    for i in range(0, len(s), chunksize):
+        chunks.append(s[i:i+chunksize])
+    return chunks
+
+# Guesses the token serially by testing every single combination using itertool.product. The return None is for guessing for every length. Explained later on
+def guess_serial(token, token_length, alphabet):
+    for tuple in itertools.product(alphabet, repeat=token_length):
+        candidate = "".join(tuple)
+        if candidate == token:
+            print(f"Token found: {candidate}")
+            return
+    # return None
+
+# Guesses the token by keeping the first character in the chunk fixed, then trying every combination with that character as the first character
+# Then the next character in the chunk turns into the fixed character and so on
 def guess_parallel(token, token_length, alphabet_chunk, found_event):
     for first_char in alphabet_chunk:
         for rest in itertools.product(alphabet, repeat = token_length - 1):
@@ -26,20 +48,8 @@ def guess_parallel(token, token_length, alphabet_chunk, found_event):
                 found_event.set()
                 return
     
-def guess_serial(token, token_length, alphabet):
-    for tuple in itertools.product(alphabet, repeat=token_length):
-        candidate = "".join(tuple)
-        if candidate == token:
-            print(f"Token found: {candidate}")
-            return
-
-def split_string(s, chunksize):
-    chunks = []
-    for i in range(0, len(s), chunksize):
-        chunks.append(s[i:i+chunksize])
-    return chunks
-
 if __name__ == "__main__":
+    # Ask for user input (includes number of processes for parallel version)
     try:
         length = int(input("Select token length: "))
         num_processes = int(input("Select number of threads to be used: "))
@@ -47,19 +57,23 @@ if __name__ == "__main__":
         print("Enter a valid integers")
         exit()
     
+    # Make sure there are no more processes than characters in the alphabet
     num_processes = min(num_processes, len(alphabet))
 
+    # Generate a token
     token = generate_token(length)
     print(f"Token to find: {token}") 
     found_event = multiprocessing.Event()
 
     start = time.time()
 
+    # Calculate the chunksize and the number of chunks based on the number of workers
     alphabet_chunksize = math.ceil(len(alphabet) / num_processes)
     alphabet_chunks = split_string(alphabet, alphabet_chunksize)
 
     processes = []
 
+    # Right now, the uncommented code guesses only tokens with the given length. To make it truly bruteforce, ucomment the for loop and the found event check
     # for length in range(1, max_length + 1):
     for i in range(num_processes):
         process = multiprocessing.Process(target=guess_parallel, args=(token, length, alphabet_chunks[i], found_event))
@@ -75,8 +89,13 @@ if __name__ == "__main__":
     end = time.time()
     print(f"It took {(end - start) * 1000} ms to guess the token")
 
+    # Guess the token serially
     '''start = time.time()
-    print(guess_serial(token, length, alphabet))
+    for length in range(1, max_length + 1):
+    result = guess_serial(token, length, alphabet)
+    if result is not None:
+        break
+    print(result)
     end = time.time()
     print(f"It took {(end - start) * 1000} ms to guess the token")'''
 
