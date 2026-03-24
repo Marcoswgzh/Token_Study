@@ -1,11 +1,21 @@
 from __future__ import annotations
 
+import sys
 import json
 import secrets
 from pathlib import Path
 
 import streamlit as st
 from streamlit_lottie import st_lottie
+
+# These few lines are needed so that importing from other packages work
+root_route = str(Path(__file__).resolve().parents[3])
+
+if root_route not in sys.path:
+    sys.path.append(root_route)
+
+
+from src.recovery_project.services.recovery_service import issue_token, validate_token
 
 
 def _fragment_passthrough(func):
@@ -519,6 +529,9 @@ def _recover_tab() -> None:
                 st.session_state.token_verified = False
             _go_to_recovery_step(current_step - 1)
             _fragment_rerun()
+    
+    if "database" not in st.session_state:
+        st.session_state.database = {}
 
     if step == 1:
         with st.form("recover_request", enter_to_submit=False):
@@ -530,7 +543,13 @@ def _recover_tab() -> None:
             request_submitted = st.form_submit_button("Request reset token")
         if request_submitted:
             if email:
-                token = _issue_demo_token(email)
+                # Changed the issue function to the one in services/recovery_service
+                token = issue_token(email, st.session_state.database)
+                # The new issue_token does not handle state updates, so do it here
+                st.session_state.reset_email = email
+                st.session_state.issued_token = token
+                st.session_state.token_verified = False
+                _go_to_recovery_step(3)
                 st.success(f"Demo token issued for {email}")
                 with st.expander("Debug (for demo/testing)", expanded=True):
                     st.code(f"Reset token: {token}", language="text")
@@ -544,8 +563,8 @@ def _recover_tab() -> None:
             guessed = st.text_input("Enter recovery token", placeholder="e.g. 1A2B3C")
             verify_submitted = st.form_submit_button("Verify token")
         if verify_submitted:
-            expected = st.session_state.issued_token
-            if guessed.strip().upper() == expected:
+            # Use the validate_token function in services/recovery_service
+            if validate_token(st.session_state.reset_email, guessed.strip(), st.session_state.database):
                 st.session_state.token_verified = True
                 _go_to_recovery_step(3)
                 st.success("Token verified (demo).")

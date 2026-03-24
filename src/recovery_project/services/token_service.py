@@ -57,7 +57,8 @@ def guess_parallel(token, token_length, alphabet_chunk, found_event):
                 print(f"Token found: {candidate}") 
                 found_event.set()
                 return
-    
+
+# For testing only
 if __name__ == "__main__":
     # Ask for user input (includes number of processes for parallel version)
     try:
