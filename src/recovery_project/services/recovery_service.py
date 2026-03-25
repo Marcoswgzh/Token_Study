@@ -13,7 +13,9 @@ from datetime import datetime, timedelta
 
 from .token_service import TokenService
 from ..repositories.token_repository import TokenRepository
+from ..repositories.user_repository import UserRepository
 
+user_repository = UserRepository()
 service = TokenService()
 token_repository = TokenRepository()
 
@@ -58,14 +60,39 @@ def validate_token(email: str, provided_token: str) -> bool:
     token_repository.mark_token_used(provided_hash)
     return True
 
+def reset_password(user_id: str, new_password: str) -> bool:
+    password_hash = hashlib.sha256(new_password.encode()).hexdigest()
+    return user_repository.update_password(user_id, password_hash)
+
 # For testing purposes
 if __name__ == "__main__":
-    token = issue_token("hello")
+    #test password reset and token generation in 1 workflow:
+    #create user and confirm it
+    user_repository.create_user(user_id="test1", email="example@example.com", password_hash="some_hash")
+    print(f"user created: {user_repository.find_user('test1')}")
+
+    #create token for user
+    token = issue_token("test1")
     print(f"generated token: {token}")
 
-    is_valid = validate_token("hello", token)
+    #test if token is valid
+    is_valid = validate_token("test1", token)
     print(f"is the token valid? {is_valid}")
 
-    print(f"tokens in the repository: {token_repository.tokens}")
+    #based on validity result, reset password and store it
+    if is_valid:
+        is_reset = reset_password("test1", "new_password")
+        print(f"is password reset? {is_reset}")
+
+        #verify that it was changed in repo too
+        user = user_repository.find_user("test1")
+        print(f"the new password hash is: {user.password_hash}")
+
+    #check if the same token can be validation (it should fail if all went well)
+    is_valid_again = validate_token("test1", token)
+    print(f"is the token valid on a second use? {is_valid_again}")
+
+
+    
 
 
