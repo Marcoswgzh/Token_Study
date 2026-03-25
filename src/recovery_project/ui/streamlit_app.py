@@ -530,9 +530,6 @@ def _recover_tab() -> None:
             _go_to_recovery_step(current_step - 1)
             _fragment_rerun()
     
-    if "database" not in st.session_state:
-        st.session_state.database = {}
-
     if step == 1:
         with st.form("recover_request", enter_to_submit=False):
             email = st.text_input(
@@ -544,7 +541,7 @@ def _recover_tab() -> None:
         if request_submitted:
             if email:
                 # Changed the issue function to the one in services/recovery_service
-                token = issue_token(email, st.session_state.database)
+                token = issue_token(email)
                 # The new issue_token does not handle state updates, so do it here
                 st.session_state.reset_email = email
                 st.session_state.issued_token = token
@@ -564,7 +561,7 @@ def _recover_tab() -> None:
             verify_submitted = st.form_submit_button("Verify token")
         if verify_submitted:
             # Use the validate_token function in services/recovery_service
-            if validate_token(st.session_state.reset_email, guessed.strip(), st.session_state.database):
+            if validate_token(st.session_state.reset_email, guessed.strip()):
                 st.session_state.token_verified = True
                 _go_to_recovery_step(3)
                 st.success("Token verified (demo).")
