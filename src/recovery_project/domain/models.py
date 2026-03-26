@@ -26,3 +26,21 @@ class RecoveryAttempt:
     timestamp: datetime
     success: bool
     blocked_by_rate_limit: bool = False
+
+
+@dataclass(slots=True)
+class TrialResult:
+    trial_id: int
+    experiment_name: str
+    token_length: int
+    alphabet_size: int
+    ttl_seconds: int
+    rate_limit_enabled: bool
+    rate_limit_max_attempts: int
+    rate_limit_window_seconds: int
+    success: bool
+    attempts_made: int
+    attempts_blocked: int
+    time_elapsed_ms: float
+    token_expired: bool
+    timestamp: str
