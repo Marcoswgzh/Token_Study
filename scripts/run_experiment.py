@@ -9,8 +9,7 @@ from pathlib import Path
 
 from recovery_project.config import ExperimentConfig, load_experiment_config
 from recovery_project.domain.models import TrialResult
-from recovery_project.experiments.metrics import compute_summary, save_results
-from recovery_project.experiments.runner import ExperimentRunner
+from recovery_project.experiments.service import execute_experiment
 
 
 def stub_trial(trial_id: int, config: ExperimentConfig) -> TrialResult:
@@ -67,11 +66,11 @@ def main() -> None:
     args = parser.parse_args()
 
     config = load_experiment_config(args.config)
-    runner = ExperimentRunner(config, run_trial=stub_trial)
-    results = runner.run()
-
-    csv_path = save_results(results, args.output_dir)
-    summary = compute_summary(results)
+    results, summary, csv_path = execute_experiment(
+        config=config,
+        output_dir=args.output_dir,
+        run_trial=stub_trial,
+    )
 
     print(f"Results written to {csv_path}")
 
