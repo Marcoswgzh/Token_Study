@@ -42,6 +42,7 @@ def guess_parallel(token, token_length, alphabet_chunk, found_event):
     for first_char in alphabet_chunk:
         if found_event.is_set():
             return
+        # If the first character of the chunk is not equal to the first character of the token, change it immediately
         if first_char != token[0]:
             continue
         for rest in itertools.product(default_alphabet, repeat = token_length - 1):
