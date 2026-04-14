@@ -38,13 +38,17 @@ def guess_serial(token, token_length, alphabet):
 # Guesses the token by keeping the first character in the chunk fixed, then trying every combination with that character as the first character
 # Then the next character in the chunk turns into the fixed character and so on
 def guess_parallel(token, token_length, alphabet_chunk, found_event):
+    token_rest = token[1:]
     for first_char in alphabet_chunk:
+        if found_event.is_set():
+            return
+        if first_char != token[0]:
+            continue
         for rest in itertools.product(default_alphabet, repeat = token_length - 1):
             if found_event.is_set():
                 return
-            candidate = first_char + "".join(rest)
-            if candidate == token:
-                print(f"Token found: {candidate}") 
+            if first_char == token[0] and "".join(rest) == token_rest:
+                print(f"Token found: {token[0] + token_rest}") 
                 found_event.set()
                 return
             
