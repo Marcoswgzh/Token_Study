@@ -8,6 +8,11 @@ from pathlib import Path
 import streamlit as st
 from streamlit_lottie import st_lottie
 
+from recovery_project.config import ExperimentConfig, TokenPolicy, RateLimitPolicy
+from recovery_project.experiments.service import execute_experiment
+from scripts.run_experiment import stub_trial
+
+
 # These few lines are needed so that importing from other packages work
 root_route = str(Path(__file__).resolve().parents[3])
 
@@ -591,6 +596,34 @@ def _recover_tab() -> None:
     if st.session_state.recovery_step == 3:
         _render_back_button(3)
 
+# helper for experiment function
+
+def build_experiment_config_from_ui(
+    token_length: int,
+    ttl: int,
+    attack_budget: int,
+    attack_rate: int,
+    rl_enabled: bool,
+    rl_max: int,
+    rl_window: int,
+) -> ExperimentConfig:
+    return ExperimentConfig(
+        name="streamlit_demo",
+        trials=1000,
+        attack_attempt_budget=attack_budget,
+        attack_rate_per_second=attack_rate,
+        token_policy=TokenPolicy(
+            length=token_length,
+            alphabet="0123456789ABCDEF",
+            ttl_seconds=ttl,
+            single_use=True,
+        ),
+        rate_limit_policy=RateLimitPolicy(
+            enabled=rl_enabled,
+            max_attempts=rl_max,
+            window_seconds=rl_window,
+        ),
+    )
 
 def _experiments_tab() -> None:
     st.markdown('<div class="headline">Experiments</div>', unsafe_allow_html=True)
@@ -615,30 +648,44 @@ def _experiments_tab() -> None:
 
     run_col, _ = st.columns([0.42, 0.58])
     run_clicked = run_col.button("Run demo experiment")
-    if run_clicked:
-        search_space = 16 ** token_length
-        naive_prob = min(attack_budget / search_space, 1.0)
-        penalty = 0.25 if rl_enabled else 1.0
-        ttl_penalty = min(ttl / 300, 1.0)
-        estimated_prob = naive_prob * penalty * ttl_penalty
-        st.info("Demo-only estimate. Replace with actual simulation output.")
+        if run_clicked:
+        config = build_experiment_config_from_ui(
+            token_length=token_length,
+            ttl=ttl,
+            attack_budget=attack_budget,
+            attack_rate=attack_rate,
+            rl_enabled=rl_enabled,
+            rl_max=int(rl_max),
+            rl_window=int(rl_window),
+        )
+
+        with st.spinner("Running experiment..."):
+            results, summary, csv_path = execute_experiment(
+                config=config,
+                output_dir=Path("results"),
+                run_trial=stub_trial,
+            )
+
+        search_space = len(config.token_policy.alphabet) ** config.token_policy.length
+
+        success_rate = summary.get("success_rate")
+        if success_rate is None:
+            success_rate = summary.get("takeover_probability")
+        if success_rate is None:
+            success_rate = 0.0
+
         m1, m2, m3 = st.columns(3)
         m1.markdown(
-            f'<div class="metric-chip"><strong>{estimated_prob:.6f}</strong><span>Estimated takeover probability</span></div>',
+            f'<div class="metric-chip"><strong>{success_rate:.6f}</strong><span>Estimated takeover probability</span></div>',
             unsafe_allow_html=True,
         )
         m2.markdown(
-            f'<div class="metric-chip"><strong>{search_space:,}</strong><span>Token search space</span></div>',
-            unsafe_allow_html=True,
-        )
+            f'<div class="metric-chip"><strong>{search_space:,}</strong><span>Token search space</span></div>',        )
         m3.markdown(
-            f'<div class="metric-chip"><strong>{attack_rate}/s</strong><span>Configured attack rate</span></div>',
-            unsafe_allow_html=True,
-        )
+            f'<div class="metric-chip"><strong>{config.attack_rate_per_second}/s</strong><span>Configured attack rate</span></div>',        )
 
-        st.caption(
-            "Next step: connect this button to `scripts/run_experiment.py` and write CSV results into `results/`."
-        )
+        st.success(f"Experiment finished. Results saved to {csv_path}")
+        st.write(summary)
 
 
 @fragment
