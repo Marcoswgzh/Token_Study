@@ -18,6 +18,7 @@ if root_route not in sys.path:
 from src.recovery_project.services.recovery_service import issue_token, validate_token
 
 
+# Sofya Grishkova (i6397764)
 def _fragment_passthrough(func):
     return func
 
@@ -25,6 +26,7 @@ def _fragment_passthrough(func):
 fragment = getattr(st, "fragment", _fragment_passthrough)
 
 
+# Sofya Grishkova (i6397764)
 def _fragment_rerun() -> None:
     """Rerun only the active fragment when supported (fallback to full rerun)."""
     try:
@@ -33,6 +35,7 @@ def _fragment_rerun() -> None:
         st.rerun()
 
 
+# Sofya Grishkova (i6397764)
 def _strip_lottie_background(animation: dict) -> dict:
     """Remove static pale background layers from the current robot Lottie."""
     layers = animation.get("layers")
@@ -52,6 +55,7 @@ def _strip_lottie_background(animation: dict) -> dict:
     return animation
 
 
+# Sofya Grishkova (i6397764)
 @st.cache_data(show_spinner=False)
 def _load_lottie() -> dict | None:
     candidates = [
@@ -68,6 +72,7 @@ def _load_lottie() -> dict | None:
     return None
 
 
+# Sofya Grishkova (i6397764)
 def _inject_styles() -> None:
     st.markdown(
         """
@@ -459,6 +464,7 @@ def _inject_styles() -> None:
     )
 
 
+# Sofya Grishkova (i6397764)
 def _init_state() -> None:
     defaults = {
         "reset_email": "",
@@ -472,6 +478,7 @@ def _init_state() -> None:
             st.session_state[key] = value
 
 
+# Sofya Grishkova (i6397764)
 def _issue_demo_token(email: str, length: int = 6) -> str:
     alphabet = "0123456789ABCDEF"
     token = "".join(secrets.choice(alphabet) for _ in range(length))
@@ -482,16 +489,19 @@ def _issue_demo_token(email: str, length: int = 6) -> str:
     return token
 
 
+# Sofya Grishkova (i6397764)
 def _go_to_recovery_step(step: int) -> None:
     st.session_state.recovery_step = max(1, min(step, 3))
 
 
+# Sofya Grishkova (i6397764)
 def _reset_recovery_flow() -> None:
     st.session_state.issued_token = None
     st.session_state.token_verified = False
     st.session_state.recovery_step = 1
 
 
+# Sofya Grishkova (i6397764)
 def _sign_in_tab() -> None:
     st.markdown('<div class="headline">Sign in</div>', unsafe_allow_html=True)
     st.markdown(
@@ -511,6 +521,7 @@ def _sign_in_tab() -> None:
             st.error("Fill in both email and password.")
 
 
+# Sofya Grishkova (i6397764)
 def _recover_tab() -> None:
     step = int(st.session_state.recovery_step)
     if step > 1 and not st.session_state.issued_token:
@@ -522,6 +533,7 @@ def _recover_tab() -> None:
 
     st.markdown('<div class="headline">Recovery</div>', unsafe_allow_html=True)
 
+    # Sofya Grishkova (i6397764)
     def _render_back_button(current_step: int) -> None:
         st.markdown('<div style="height:.35rem"></div>', unsafe_allow_html=True)
         if st.button("←", key=f"recover_back_{current_step}"):
@@ -592,6 +604,7 @@ def _recover_tab() -> None:
         _render_back_button(3)
 
 
+# Sofya Grishkova (i6397764)
 def _experiments_tab() -> None:
     st.markdown('<div class="headline">Experiments</div>', unsafe_allow_html=True)
 
@@ -641,6 +654,7 @@ def _experiments_tab() -> None:
         )
 
 
+# Sofya Grishkova (i6397764)
 @fragment
 def _render_left_panel() -> None:
     lottie = _load_lottie()
@@ -663,6 +677,7 @@ def _render_left_panel() -> None:
     st.markdown('<div style="height:.3rem"></div>', unsafe_allow_html=True)
 
 
+# Sofya Grishkova (i6397764)
 @fragment
 def _render_right_panel() -> None:
     section = st.radio(
@@ -681,6 +696,7 @@ def _render_right_panel() -> None:
         _experiments_tab()
 
 
+# Sofya Grishkova (i6397764)
 def main() -> None:
     st.set_page_config(
         page_title="Account Recovery Project UI",

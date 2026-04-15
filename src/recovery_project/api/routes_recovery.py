@@ -1,3 +1,4 @@
+# Sofya Grishkova (i6397764)
 """Recovery endpoint contract placeholders.
 
 Examples to implement later:
