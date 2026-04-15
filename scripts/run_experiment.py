@@ -15,7 +15,7 @@ from recovery_project.simulation.exp_window_attack import ExpirationWindowAttack
 
 
 # Main writer: Timea Vojcikova
-# Contributor: Anna Kalmanczhelyi
+# Reviewer: Anna Kalmanczhelyi
 def run_trial(trial_id: int, config: ExperimentConfig) -> TrialResult:
     """Run one real expiration-window attack trial.
  
