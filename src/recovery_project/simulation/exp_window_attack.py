@@ -1,5 +1,8 @@
 """Expiration window attack script: use brute force and random sampling of tokens to try to find the active token and exploit logging in"""
 
+# Main writer: Anna Kálmánczhelyi
+# Reviewer: Timea Vojcikova
+
 import multiprocessing
 import time
 import random
