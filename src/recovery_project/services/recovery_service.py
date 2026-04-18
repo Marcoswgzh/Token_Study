@@ -11,16 +11,16 @@ from datetime import datetime, timedelta
 #i don't know about issues with import, i'll look into it later. for now, if you have trouble running the code because of the invalid imports, run from terminal with:
 # python -m src.recovery_project.services.recovery_service
 
-from .token_service import TokenService
-from ..repositories.token_repository import TokenRepository
-from ..repositories.user_repository import UserRepository
+from src.recovery_project.services.token_service import TokenService
+from src.recovery_project.repositories.token_repository import TokenRepository
+from src.recovery_project.repositories.user_repository import UserRepository
 
 user_repository = UserRepository()
 service = TokenService()
 token_repository = TokenRepository()
 
 # Use tokenRepository for database purposes
-def issue_token(email: str, ) -> str:
+def issue_token(email: str) -> str:
     token, token_hash = service.generate_token()
 
     created_at = datetime.now()
@@ -46,7 +46,11 @@ def validate_token(email: str, provided_token: str) -> bool:
     # If the user is not in the database, return false
     if not record:
         return False
-    
+
+    # If the email is not connected to the token, return false
+    if user_repository.find_email(email).user_id != record.user_id:
+        return False
+
     # If the token have been used already, return false
     if record.used:
         return False
@@ -72,24 +76,24 @@ if __name__ == "__main__":
     print(f"user created: {user_repository.find_user('test1')}")
 
     #create token for user
-    token = issue_token("test1")
+    token = issue_token("example@example.com")
     print(f"generated token: {token}")
 
     #test if token is valid
-    is_valid = validate_token("test1", token)
+    is_valid = validate_token("example@example.com", token)
     print(f"is the token valid? {is_valid}")
 
     #based on validity result, reset password and store it
     if is_valid:
-        is_reset = reset_password("test1", "new_password")
+        is_reset = reset_password("example@example.com", "new_password")
         print(f"is password reset? {is_reset}")
 
         #verify that it was changed in repo too
-        user = user_repository.find_user("test1")
+        user = user_repository.find_email("example@example.com")
         print(f"the new password hash is: {user.password_hash}")
 
     #check if the same token can be validation (it should fail if all went well)
-    is_valid_again = validate_token("test1", token)
+    is_valid_again = validate_token("example@example.com", token)
     print(f"is the token valid on a second use? {is_valid_again}")
 
 

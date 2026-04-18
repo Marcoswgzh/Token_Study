@@ -16,6 +16,7 @@ if root_route not in sys.path:
 
 
 from src.recovery_project.services.recovery_service import issue_token, validate_token
+from src.recovery_project.services.email_verifier import email_verifier
 
 
 def _fragment_passthrough(func):
@@ -506,7 +507,9 @@ def _sign_in_tab() -> None:
 
     if submitted:
         if email and password:
-            st.success("Demo login submitted. Next step: connect `auth_service`.")
+            if email_verifier(email):
+                st.success("Demo login submitted. Next step: connect `auth_service`.")
+            else: st.error("Invalid email format, required format: example@email.com")
         else:
             st.error("Fill in both email and password.")
 
@@ -540,17 +543,20 @@ def _recover_tab() -> None:
             request_submitted = st.form_submit_button("Request reset token")
         if request_submitted:
             if email:
-                # Changed the issue function to the one in services/recovery_service
-                token = issue_token(email)
-                # The new issue_token does not handle state updates, so do it here
-                st.session_state.reset_email = email
-                st.session_state.issued_token = token
-                st.session_state.token_verified = False
-                _go_to_recovery_step(3)
-                st.success(f"Demo token issued for {email}")
-                with st.expander("Debug (for demo/testing)", expanded=True):
-                    st.code(f"Reset token: {token}", language="text")
-                _fragment_rerun()
+                if email_verifier(email):
+                    # Changed the issue function to the one in services/recovery_service
+                    token = issue_token(email)
+                    # The new issue_token does not handle state updates, so do it here
+                    st.session_state.reset_email = email
+                    st.session_state.issued_token = token
+                    st.session_state.token_verified = False
+                    _go_to_recovery_step(3)
+                    st.success(f"Demo token issued for {email}")
+                    with st.expander("Debug (for demo/testing)", expanded=True):
+                        st.code(f"Reset token: {token}", language="text")
+                    _fragment_rerun()
+                else:
+                    st.error("Invalid email format, required format: example@email.com")
             else:
                 st.error("Enter email first.")
         return

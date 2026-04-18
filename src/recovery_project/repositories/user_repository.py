@@ -20,6 +20,14 @@ class UserRepository:
         #if user is found (based on user_id), return it
         return self.users.get(user_id)
 
+#function writer Erika Skodova
+    def find_email(self, email: str) -> Optional[User]:
+        # if user is found (based on email), return user ID
+        for user in self.users.values():
+            if user.email == email:
+                return user
+        return None
+
     def update_password(self, user_id: str, new_password_hash: str) -> bool:
         user = self.users.get(user_id)
         if user:
