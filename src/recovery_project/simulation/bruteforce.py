@@ -3,6 +3,7 @@
 
 import math
 import multiprocessing
+from multiprocessing.synchronize import Event
 from pathlib import Path
 import string
 import itertools
@@ -20,14 +21,14 @@ from src.recovery_project.services.token_service import TokenService
 default_alphabet = string.ascii_letters
 
 # Splits the alphabet into chunksize chunks
-def split_string(s, chunksize):
+def split_string(s: str, chunksize: int):
     chunks = []
     for i in range(0, len(s), chunksize):
         chunks.append(s[i:i+chunksize])
     return chunks
 
 # Guesses the token serially by testing every single combination using itertool.product. The return None is for guessing for every length. Explained later on
-def guess_serial(token, token_length, alphabet):
+def guess_serial(token: str, token_length: int, alphabet: str):
     for tuple in itertools.product(alphabet, repeat=token_length):
         candidate = "".join(tuple)
         if candidate == token:
@@ -37,65 +38,48 @@ def guess_serial(token, token_length, alphabet):
 
 # Guesses the token by keeping the first character in the chunk fixed, then trying every combination with that character as the first character
 # Then the next character in the chunk turns into the fixed character and so on
-def guess_parallel(token, token_length, alphabet_chunk, found_event):
-    token_rest = token[1:]
-    for first_char in alphabet_chunk:
+def guess_parallel(token: str, suffix_combinations: list, found_event: Event):
+    for first_char in default_alphabet:
         if found_event.is_set():
             return
-        # If the first character of the chunk is not equal to the first character of the token, change it immediately
-        if first_char != token[0]:
-            continue
-        for rest in itertools.product(default_alphabet, repeat = token_length - 1):
+        for rest in suffix_combinations:
             if found_event.is_set():
                 return
-            if first_char == token[0] and "".join(rest) == token_rest:
-                print(f"Token found: {token[0] + token_rest}") 
+            if first_char + "".join(rest) == token:
+                print(f"Token found: {first_char + ''.join(rest)}") 
                 found_event.set()
                 return
             
-# For testing only
 if __name__ == "__main__":
     # Ask for user input (includes number of processes for parallel version)
     try:
         length = int(input("Select token length: "))
-        num_processes = int(input("Select number of threads to be used: "))
     except ValueError:
         print("Enter a valid integers")
         exit()
     
     # Make sure there are no more processes than characters in the alphabet
-    num_processes = min(num_processes, len(default_alphabet))
+    num_processes = min(multiprocessing.cpu_count(), len(default_alphabet))
 
     # Generate a token
     service = TokenService(alphabet=default_alphabet, token_length=length)
     token, token_hash =service.generate_token()
     print(f"Token to find: {token}") 
-    print(f"Token hash: {token_hash}")
     found_event = multiprocessing.Event()
-
-    # HASH CHECK
-    # timing and printing the result of the hashing check
-    print("\nHash check:")
-    start = time.time()
-    is_valid =service.verify_token(token, token_hash)
-    end = time.time()
-    print(f"verification result: {is_valid}")
-    print(f"It took {(end - start) * 1000} ms to guess the token")
 
     # BRUTE FORCE
     print("\nBrute force check:")
     start = time.time()
 
-    # Calculate the chunksize and the number of chunks based on the number of workers
-    alphabet_chunksize = math.ceil(len(default_alphabet) / num_processes)
-    alphabet_chunks = split_string(default_alphabet, alphabet_chunksize)
+    all_suffixes = list(itertools.product(default_alphabet, repeat=length - 1))
+    chunks = split_string(all_suffixes, math.ceil(len(all_suffixes)/num_processes))
 
     processes = []
 
     # Right now, the uncommented code guesses only tokens with the given length. To make it truly bruteforce, ucomment the for loop and the found event check
     # for length in range(1, max_length + 1):
-    for i in range(num_processes):
-        process = multiprocessing.Process(target=guess_parallel, args=(token, length, alphabet_chunks[i], found_event))
+    for i in range(len(chunks)):
+        process = multiprocessing.Process(target=guess_parallel, args=(token, chunks[i], found_event))
         processes.append(process)
         process.start()
 
