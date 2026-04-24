@@ -36,8 +36,8 @@ def guess_serial(token: str, token_length: int, alphabet: str):
             return
     # return None
 
-# Guesses the token by keeping the first character in the chunk fixed, then trying every combination with that character as the first character
-# Then the next character in the chunk turns into the fixed character and so on
+# Guesses the token by iterating over a list of all suffixes, then trying every combination with every suffix and every first character
+# Then the next suffix in the list turns into the fixed suffix and so on
 def guess_parallel(token: str, suffix_combinations: list, found_event: Event):
     for first_char in default_alphabet:
         if found_event.is_set():
@@ -71,6 +71,7 @@ if __name__ == "__main__":
     print("\nBrute force check:")
     start = time.time()
 
+    # Create the list of suffixes and divide it in chunks
     all_suffixes = list(itertools.product(default_alphabet, repeat=length - 1))
     chunks = split_string(all_suffixes, math.ceil(len(all_suffixes)/num_processes))
 
