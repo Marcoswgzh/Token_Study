@@ -21,24 +21,15 @@ from src.recovery_project.services.token_service import TokenService
 default_alphabet = string.ascii_letters
 
 # Splits the alphabet into chunksize chunks
-def split_string(s: str, chunksize: int):
+def split_string(s: str, chunksize: int) -> list:
     chunks = []
     for i in range(0, len(s), chunksize):
         chunks.append(s[i:i+chunksize])
     return chunks
 
-# Guesses the token serially by testing every single combination using itertool.product. The return None is for guessing for every length. Explained later on
-def guess_serial(token: str, token_length: int, alphabet: str):
-    for tuple in itertools.product(alphabet, repeat=token_length):
-        candidate = "".join(tuple)
-        if candidate == token:
-            print(f"Token found: {candidate}")
-            return
-    # return None
-
 # Guesses the token by iterating over a list of all suffixes, then trying every combination with every suffix and every first character
 # Then the next suffix in the list turns into the fixed suffix and so on
-def guess_parallel(token: str, suffix_combinations: list, found_event: Event):
+def guess_parallel(token: str, suffix_combinations: list, found_event: Event) -> None:
     for first_char in default_alphabet:
         if found_event.is_set():
             return
@@ -51,7 +42,7 @@ def guess_parallel(token: str, suffix_combinations: list, found_event: Event):
                 return
             
 if __name__ == "__main__":
-    # Ask for user input (includes number of processes for parallel version)
+    # Ask for user input
     try:
         length = int(input("Select token length: "))
     except ValueError:
@@ -92,13 +83,3 @@ if __name__ == "__main__":
 
     end = time.time()
     print(f"It took {(end - start) * 1000} ms to guess the token")
-
-    # Guess the token serially
-    '''start = time.time()
-    for length in range(1, max_length + 1):
-    result = guess_serial(token, length, alphabet)
-    if result is not None:
-        break
-    print(result)
-    end = time.time()
-    print(f"It took {(end - start) * 1000} ms to guess the token")'''
