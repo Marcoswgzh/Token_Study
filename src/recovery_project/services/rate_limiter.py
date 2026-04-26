@@ -46,3 +46,4 @@ def get_remaining_lockout_time(email: str) -> int:
     remaining_time_raw = locked_until - datetime.now()
     remaining_time_minutes = int(remaining_time_raw.total_seconds() / 60) + 1
     return remaining_time_minutes
+
