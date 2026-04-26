@@ -572,18 +572,22 @@ def _recover_tab() -> None:
             guessed = st.text_input("Enter recovery token", placeholder="e.g. 1A2B3C")
             verify_submitted = st.form_submit_button("Verify token")
         if verify_submitted:
+            # Check if the workflow is locked for the desired email. If it is, display the error. Error should be displayed if the workflow is locked, 
+            # even if the correct token is submitted after lock
             if is_locked(st.session_state.reset_email):
-                st.error(f"Too many attempts. Try again in {get_remaining_lockout_time(st.session_state.reset_email)} minute(s).")
+                st.error(f"Too many attempts. Try again in {get_remaining_lockout_time(st.session_state.reset_email)}.")
             # Use the validate_token function in services/recovery_service
             elif validate_token(st.session_state.reset_email, guessed.strip()):
                 st.session_state.token_verified = True
                 _go_to_recovery_step(3)
+                # If the submitted token was correct within the tries window, remove any instance of the corresponding email from the failed attempts dictionary
                 record_success(st.session_state.reset_email)
                 st.success("Token verified (demo).")
                 _fragment_rerun()
             else:
                 st.session_state.token_verified = False
                 st.error("Invalid token.")
+                # If the submitted token was invalid, increase the number of failed attempts and check if there were more than the max permitted
                 record_failure(st.session_state.reset_email) 
 
         _render_back_button(2)
