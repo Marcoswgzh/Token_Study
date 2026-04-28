@@ -16,7 +16,7 @@ if root_route not in sys.path:
 
 
 from src.recovery_project.services.recovery_service import issue_token, validate_token
-from src.recovery_project.services.rate_limiter import is_locked, record_success, record_failure, get_remaining_lockout_time
+from src.recovery_project.services.rate_limiter import is_locked, get_remaining_lockout_time
 
 # Sofya Grishkova (i6397764)
 def _fragment_passthrough(func):
@@ -554,11 +554,16 @@ def _recover_tab() -> None:
             if email:
                 # Changed the issue function to the one in services/recovery_service
                 token = issue_token(email)
+                # service returns None when this email requested too many tokens
+                if token is None:
+                    st.error("Too many reset token requests. Try again later.")
+                    return
                 # The new issue_token does not handle state updates, so do it here
                 st.session_state.reset_email = email
                 st.session_state.issued_token = token
                 st.session_state.token_verified = False
-                _go_to_recovery_step(3)
+                # after getting the token, user still needs to verify it
+                _go_to_recovery_step(2)
                 st.success(f"Demo token issued for {email}")
                 with st.expander("Debug (for demo/testing)", expanded=True):
                     st.code(f"Reset token: {token}", language="text")
@@ -580,15 +585,11 @@ def _recover_tab() -> None:
             elif validate_token(st.session_state.reset_email, guessed.strip()):
                 st.session_state.token_verified = True
                 _go_to_recovery_step(3)
-                # If the submitted token was correct within the tries window, remove any instance of the corresponding email from the failed attempts dictionary
-                record_success(st.session_state.reset_email)
                 st.success("Token verified (demo).")
                 _fragment_rerun()
             else:
                 st.session_state.token_verified = False
                 st.error("Invalid token.")
-                # If the submitted token was invalid, increase the number of failed attempts and check if there were more than the max permitted
-                record_failure(st.session_state.reset_email) 
 
         _render_back_button(2)
         return
@@ -602,7 +603,10 @@ def _recover_tab() -> None:
         )
         reset_submitted = st.form_submit_button("Reset password")
     if reset_submitted:
-        if not new_password or not confirm_password:
+        # prevent jumping straight to password reset without valid token
+        if not st.session_state.token_verified:
+            st.error("Verify the token before resetting the password.")
+        elif not new_password or not confirm_password:
             st.error("Fill in both password fields.")
         elif new_password != confirm_password:
             st.error("Passwords do not match.")
