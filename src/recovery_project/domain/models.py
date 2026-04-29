@@ -1,3 +1,5 @@
+#class written by
+
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -27,7 +29,7 @@ class RecoveryAttempt:
     success: bool
     blocked_by_rate_limit: bool = False
 
-
+#written by Erika Škodová
 @dataclass(slots=True)
 class TrialResult:
     trial_id: int

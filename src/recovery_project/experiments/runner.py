@@ -1,3 +1,4 @@
+#class written by Erika Škodová
 """Experiment runner that orchestrates N trials and collects TrialResults."""
 
 from __future__ import annotations
