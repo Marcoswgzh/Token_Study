@@ -1,3 +1,4 @@
+#class written by Giorgio Di Rosa
 """Logging setup for the recovery project."""
 
 import logging

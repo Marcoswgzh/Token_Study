@@ -1,3 +1,4 @@
+#class written by Erika Škodová
 """CSV persistence and summary statistics for experiment results."""
 
 from __future__ import annotations
