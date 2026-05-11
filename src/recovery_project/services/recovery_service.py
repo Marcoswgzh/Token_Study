@@ -8,19 +8,21 @@ Core responsibilities:
 import hashlib
 from datetime import datetime, timedelta
 
-#i don't know about issues with import, i'll look into it later. for now, if you have trouble running the code because of the invalid imports, run from terminal with:
-# python -m src.recovery_project.services.recovery_service
-
-from src.recovery_project.services.token_service import TokenService
-from src.recovery_project.repositories.token_repository import TokenRepository
-from src.recovery_project.repositories.user_repository import UserRepository
+from .rate_limiter import request_limiter, validation_limiter
+from .token_service import TokenService
+from ..repositories.token_repository import TokenRepository
+from ..repositories.user_repository import UserRepository
 
 user_repository = UserRepository()
 service = TokenService()
 token_repository = TokenRepository()
 
-# Use tokenRepository for database purposes
-def issue_token(email: str) -> str:
+# Sofya Grishkova - i6397764
+def issue_token(email: str) -> str | None:
+    # do not issue endless tokens for the same account
+    if request_limiter.is_locked(email):
+        return None
+
     token, token_hash = service.generate_token()
 
     created_at = datetime.now()
@@ -29,42 +31,52 @@ def issue_token(email: str) -> str:
     expires_at = datetime.now() + timedelta(seconds=300)
 
     token_repository.store_token(token_hash, email, created_at, expires_at)
+
+    # count token requests too, because requesting many reset emails is also abuse
+    request_limiter.record_failure(email)
+
     # print statement for testing and to be able to see the token
     # In a real workflow, the token would be sent to the email provided
     print(f"Token issued for {email}: {token}")
     return token
 
-# Validate the token
+# Sofya Grishkova - i6397764
 def validate_token(email: str, provided_token: str) -> bool:
-    
-    #hash the provided_token
-    provided_hash = hashlib.sha256(provided_token.encode()).hexdigest()
+    # if the account is locked, even a correct token should not work yet
+    if validation_limiter.is_locked(email):
+        return False
 
-    #try to find this provided_hash in the repo
+    provided_hash = hashlib.sha256(provided_token.encode()).hexdigest()
     record = token_repository.find_token(provided_hash)
 
-    # If the user is not in the database, return false
+    # unknown token is a failed guess
     if not record:
+        validation_limiter.record_failure(email)
         return False
 
-    # If the email is not connected to the token, return false
+     # token must belong to the same account that is trying to recover
     if user_repository.find_email(email).user_id != record.user_id:
+        validation_limiter.record_failure(email)
         return False
 
-    # If the token have been used already, return false
+    # used tokens should not be accepted again
     if record.used:
+        validation_limiter.record_failure(email)
         return False
-    
-    # If the token is expired, return false
+
+    # expired token also counts as a failed validation attempt
     if datetime.now() > record.expires_at:
+        validation_limiter.record_failure(email)
         return False
-    
-    # If any of the previous conditions happen, the provided token is correct, so return true
-    #we also mark the token used (so it cannot be reused infinite times)
+
+    # token is correct, so mark it as used and clear previous failures
     token_repository.mark_token_used(provided_hash)
+    validation_limiter.record_success(email)
     return True
 
+# Sofya Grishkova - i6397764
 def reset_password(user_id: str, new_password: str) -> bool:
+    # password is stored as a hash, not as plain text
     password_hash = hashlib.sha256(new_password.encode()).hexdigest()
     return user_repository.update_password(user_id, password_hash)
 
@@ -98,5 +110,3 @@ if __name__ == "__main__":
 
 
     
-
-

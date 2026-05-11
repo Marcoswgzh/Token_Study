@@ -17,8 +17,10 @@ if root_route not in sys.path:
 
 from src.recovery_project.services.recovery_service import issue_token, validate_token
 from src.recovery_project.services.email_verifier import email_verifier
+from src.recovery_project.services.rate_limiter import is_locked, get_remaining_lockout_time
 
 
+# Sofya Grishkova (i6397764)
 def _fragment_passthrough(func):
     return func
 
@@ -26,6 +28,7 @@ def _fragment_passthrough(func):
 fragment = getattr(st, "fragment", _fragment_passthrough)
 
 
+# Sofya Grishkova (i6397764)
 def _fragment_rerun() -> None:
     """Rerun only the active fragment when supported (fallback to full rerun)."""
     try:
@@ -34,6 +37,7 @@ def _fragment_rerun() -> None:
         st.rerun()
 
 
+# Sofya Grishkova (i6397764)
 def _strip_lottie_background(animation: dict) -> dict:
     """Remove static pale background layers from the current robot Lottie."""
     layers = animation.get("layers")
@@ -53,6 +57,7 @@ def _strip_lottie_background(animation: dict) -> dict:
     return animation
 
 
+# Sofya Grishkova (i6397764)
 @st.cache_data(show_spinner=False)
 def _load_lottie() -> dict | None:
     candidates = [
@@ -69,6 +74,7 @@ def _load_lottie() -> dict | None:
     return None
 
 
+# Sofya Grishkova (i6397764)
 def _inject_styles() -> None:
     st.markdown(
         """
@@ -460,6 +466,7 @@ def _inject_styles() -> None:
     )
 
 
+# Sofya Grishkova (i6397764)
 def _init_state() -> None:
     defaults = {
         "reset_email": "",
@@ -473,6 +480,7 @@ def _init_state() -> None:
             st.session_state[key] = value
 
 
+# Sofya Grishkova (i6397764)
 def _issue_demo_token(email: str, length: int = 6) -> str:
     alphabet = "0123456789ABCDEF"
     token = "".join(secrets.choice(alphabet) for _ in range(length))
@@ -483,16 +491,19 @@ def _issue_demo_token(email: str, length: int = 6) -> str:
     return token
 
 
+# Sofya Grishkova (i6397764)
 def _go_to_recovery_step(step: int) -> None:
     st.session_state.recovery_step = max(1, min(step, 3))
 
 
+# Sofya Grishkova (i6397764)
 def _reset_recovery_flow() -> None:
     st.session_state.issued_token = None
     st.session_state.token_verified = False
     st.session_state.recovery_step = 1
 
 
+# Sofya Grishkova (i6397764)
 def _sign_in_tab() -> None:
     st.markdown('<div class="headline">Sign in</div>', unsafe_allow_html=True)
     st.markdown(
@@ -514,6 +525,7 @@ def _sign_in_tab() -> None:
             st.error("Fill in both email and password.")
 
 
+# Sofya Grishkova (i6397764)
 def _recover_tab() -> None:
     step = int(st.session_state.recovery_step)
     if step > 1 and not st.session_state.issued_token:
@@ -525,6 +537,7 @@ def _recover_tab() -> None:
 
     st.markdown('<div class="headline">Recovery</div>', unsafe_allow_html=True)
 
+    # Sofya Grishkova (i6397764)
     def _render_back_button(current_step: int) -> None:
         st.markdown('<div style="height:.35rem"></div>', unsafe_allow_html=True)
         if st.button("←", key=f"recover_back_{current_step}"):
@@ -544,13 +557,18 @@ def _recover_tab() -> None:
         if request_submitted:
             if email:
                 if email_verifier(email):
-                    # Changed the issue function to the one in services/recovery_service
+                     # Changed the issue function to the one in services/recovery_service
                     token = issue_token(email)
+                    # service returns None when this email requested too many tokens
+                    if token is None:
+                        st.error("Too many reset token requests. Try again later.")
+                        return
                     # The new issue_token does not handle state updates, so do it here
                     st.session_state.reset_email = email
                     st.session_state.issued_token = token
                     st.session_state.token_verified = False
-                    _go_to_recovery_step(3)
+                    # after getting the token, user still needs to verify it
+                    _go_to_recovery_step(2)
                     st.success(f"Demo token issued for {email}")
                     with st.expander("Debug (for demo/testing)", expanded=True):
                         st.code(f"Reset token: {token}", language="text")
@@ -566,8 +584,12 @@ def _recover_tab() -> None:
             guessed = st.text_input("Enter recovery token", placeholder="e.g. 1A2B3C")
             verify_submitted = st.form_submit_button("Verify token")
         if verify_submitted:
+            # Check if the workflow is locked for the desired email. If it is, display the error. Error should be displayed if the workflow is locked, 
+            # even if the correct token is submitted after lock
+            if is_locked(st.session_state.reset_email):
+                st.error(f"Too many attempts. Try again in {get_remaining_lockout_time(st.session_state.reset_email)}.")
             # Use the validate_token function in services/recovery_service
-            if validate_token(st.session_state.reset_email, guessed.strip()):
+            elif validate_token(st.session_state.reset_email, guessed.strip()):
                 st.session_state.token_verified = True
                 _go_to_recovery_step(3)
                 st.success("Token verified (demo).")
@@ -575,6 +597,7 @@ def _recover_tab() -> None:
             else:
                 st.session_state.token_verified = False
                 st.error("Invalid token.")
+
         _render_back_button(2)
         return
 
@@ -587,7 +610,10 @@ def _recover_tab() -> None:
         )
         reset_submitted = st.form_submit_button("Reset password")
     if reset_submitted:
-        if not new_password or not confirm_password:
+        # prevent jumping straight to password reset without valid token
+        if not st.session_state.token_verified:
+            st.error("Verify the token before resetting the password.")
+        elif not new_password or not confirm_password:
             st.error("Fill in both password fields.")
         elif new_password != confirm_password:
             st.error("Passwords do not match.")
@@ -598,6 +624,7 @@ def _recover_tab() -> None:
         _render_back_button(3)
 
 
+# Sofya Grishkova (i6397764)
 def _experiments_tab() -> None:
     st.markdown('<div class="headline">Experiments</div>', unsafe_allow_html=True)
 
@@ -647,6 +674,7 @@ def _experiments_tab() -> None:
         )
 
 
+# Sofya Grishkova (i6397764)
 @fragment
 def _render_left_panel() -> None:
     lottie = _load_lottie()
@@ -669,6 +697,7 @@ def _render_left_panel() -> None:
     st.markdown('<div style="height:.3rem"></div>', unsafe_allow_html=True)
 
 
+# Sofya Grishkova (i6397764)
 @fragment
 def _render_right_panel() -> None:
     section = st.radio(
@@ -687,6 +716,7 @@ def _render_right_panel() -> None:
         _experiments_tab()
 
 
+# Sofya Grishkova (i6397764)
 def main() -> None:
     st.set_page_config(
         page_title="Account Recovery Project UI",
