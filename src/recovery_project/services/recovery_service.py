@@ -5,6 +5,8 @@ Core responsibilities:
 - validate token (entropy/TTL/single-use behavior)
 - reset password on successful recovery
 """
+
+# Writer: Anna Kálmánczhelyi
 import hashlib
 from datetime import datetime, timedelta
 
@@ -17,6 +19,7 @@ user_repository = UserRepository()
 service = TokenService()
 token_repository = TokenRepository()
 
+# Writer: Anna Kálmánczhelyi
 # Sofya Grishkova - i6397764
 def issue_token(email: str) -> str | None:
     # do not issue endless tokens for the same account
@@ -40,6 +43,7 @@ def issue_token(email: str) -> str | None:
     print(f"Token issued for {email}: {token}")
     return token
 
+# Writer: Anna Kálmánczhelyi
 # Sofya Grishkova - i6397764
 def validate_token(email: str, provided_token: str) -> bool:
     # if the account is locked, even a correct token should not work yet
@@ -74,12 +78,14 @@ def validate_token(email: str, provided_token: str) -> bool:
     validation_limiter.record_success(email)
     return True
 
+# Writer: Anna Kálmánczhelyi
 # Sofya Grishkova - i6397764
 def reset_password(user_id: str, new_password: str) -> bool:
     # password is stored as a hash, not as plain text
     password_hash = hashlib.sha256(new_password.encode()).hexdigest()
     return user_repository.update_password(user_id, password_hash)
 
+# Writer: Anna Kálmánczhelyi
 # For testing purposes
 if __name__ == "__main__":
     #test password reset and token generation in 1 workflow:

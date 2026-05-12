@@ -4,9 +4,10 @@ from typing import Optional
 from ..domain.models import User
 
 class UserRepository:
+    # Writer: Anna Kálmánczhelyi 
     def __init__(self):
         self.users = {}
-
+    # Writer: Anna Kálmánczhelyi 
     def create_user(self, user_id: str, email: str, password_hash: str):
         #create then store a new user based on models.User dataclass
 
@@ -16,6 +17,7 @@ class UserRepository:
                     mfa_enabled=False)
         self.users[user_id] = user
 
+    # Writer: Anna Kálmánczhelyi 
     def find_user(self, user_id: str) -> Optional[User]:
         #if user is found (based on user_id), return it
         return self.users.get(user_id)
@@ -28,6 +30,7 @@ class UserRepository:
                 return user
         return None
 
+    # Writer: Anna Kálmánczhelyi 
     def update_password(self, user_id: str, new_password_hash: str) -> bool:
         user = self.users.get(user_id)
         if user:
