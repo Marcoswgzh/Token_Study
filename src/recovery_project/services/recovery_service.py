@@ -12,10 +12,9 @@ from datetime import datetime, timedelta
 
 from .rate_limiter import request_limiter, validation_limiter
 from .token_service import TokenService
+from .auth_service import update_password
 from ..repositories.token_repository import TokenRepository
-from ..repositories.user_repository import UserRepository
 
-user_repository = UserRepository()
 service = TokenService()
 token_repository = TokenRepository()
 
@@ -33,6 +32,7 @@ def issue_token(email: str) -> str | None:
     #TODO: this doesn't connect to the ui yet, the seconds are hardcoded, so if the user changes them on the interface, it won't have an effect
     expires_at = datetime.now() + timedelta(seconds=300)
 
+    # The demo backend binds recovery tokens directly to the account email.
     token_repository.store_token(token_hash, email, created_at, expires_at)
 
     # count token requests too, because requesting many reset emails is also abuse
@@ -58,8 +58,8 @@ def validate_token(email: str, provided_token: str) -> bool:
         validation_limiter.record_failure(email)
         return False
 
-     # token must belong to the same account that is trying to recover
-    if user_repository.find_email(email).user_id != record.user_id:
+    # token must belong to the same account that is trying to recover
+    if record.user_id != email:
         validation_limiter.record_failure(email)
         return False
 
@@ -80,19 +80,14 @@ def validate_token(email: str, provided_token: str) -> bool:
 
 # Writer: Anna Kálmánczhelyi
 # Sofya Grishkova - i6397764
-def reset_password(user_id: str, new_password: str) -> bool:
-    # password is stored as a hash, not as plain text
-    password_hash = hashlib.sha256(new_password.encode()).hexdigest()
-    return user_repository.update_password(user_id, password_hash)
+def reset_password(email: str, new_password: str) -> bool:
+    return update_password(email, new_password)
 
 # Writer: Anna Kálmánczhelyi
 # For testing purposes
 if __name__ == "__main__":
     #test password reset and token generation in 1 workflow:
     #create user and confirm it
-    user_repository.create_user(user_id="test1", email="example@example.com", password_hash="some_hash")
-    print(f"user created: {user_repository.find_user('test1')}")
-
     #create token for user
     token = issue_token("example@example.com")
     print(f"generated token: {token}")
@@ -105,10 +100,6 @@ if __name__ == "__main__":
     if is_valid:
         is_reset = reset_password("example@example.com", "new_password")
         print(f"is password reset? {is_reset}")
-
-        #verify that it was changed in repo too
-        user = user_repository.find_email("example@example.com")
-        print(f"the new password hash is: {user.password_hash}")
 
     #check if the same token can be validation (it should fail if all went well)
     is_valid_again = validate_token("example@example.com", token)
