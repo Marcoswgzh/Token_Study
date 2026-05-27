@@ -3,6 +3,7 @@ from __future__ import annotations
 import sys
 import json
 import secrets
+from html import escape
 from pathlib import Path
 
 import streamlit as st
@@ -15,7 +16,18 @@ if root_route not in sys.path:
     sys.path.append(root_route)
 
 
-from src.recovery_project.services.recovery_service import issue_token, validate_token
+from src.recovery_project.services.auth_service import (
+    DEMO_EMAIL,
+    DEMO_PASSWORD,
+    ensure_demo_user,
+    login_user,
+    user_exists,
+)
+from src.recovery_project.services.recovery_service import (
+    issue_token,
+    reset_password,
+    validate_token,
+)
 from src.recovery_project.services.email_verifier import email_verifier
 from src.recovery_project.services.rate_limiter import is_locked, get_remaining_lockout_time
 
@@ -227,6 +239,36 @@ def _inject_styles() -> None:
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 7px;
             padding: 0.1rem 0.35rem;
+        }
+        [data-testid="stCodeBlock"] pre,
+        [data-testid="stCodeBlock"] code {
+            background: #151d31 !important;
+            color: #edf1fb !important;
+            border-color: rgba(95, 168, 255, 0.18) !important;
+        }
+        .token-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            background: #151d31;
+            border: 1px solid rgba(95, 168, 255, 0.24);
+            border-radius: 14px;
+            padding: 0.85rem 0.95rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.035);
+        }
+        .token-preview span {
+            color: var(--muted);
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            font-weight: 600;
+        }
+        .token-preview strong {
+            color: #edf1fb;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            font-size: 1.15rem;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
         }
         .metric-chip {
             background: rgba(255,255,255,0.03);
@@ -466,14 +508,17 @@ def _inject_styles() -> None:
     )
 
 
-# Sofya Grishkova (i6397764)
+# Sofya Grishkova - i6397764
 def _init_state() -> None:
+    ensure_demo_user()
     defaults = {
         "reset_email": "",
         "issued_token": None,
         "token_verified": False,
         "last_status": None,
         "recovery_step": 1,
+        "logged_in": False,
+        "current_user": None,
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -503,29 +548,53 @@ def _reset_recovery_flow() -> None:
     st.session_state.recovery_step = 1
 
 
-# Sofya Grishkova (i6397764)
+# Sofya Grishkova - i6397764
+def _render_token_preview(token: str) -> None:
+    st.markdown(
+        f"""
+        <div class="token-preview">
+            <span>Reset token</span>
+            <strong>{escape(token)}</strong>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+# Sofya Grishkova - i6397764
 def _sign_in_tab() -> None:
     st.markdown('<div class="headline">Sign in</div>', unsafe_allow_html=True)
     st.markdown(
         '<div class="recovery-hint">Forgot your password? Open <b>Recovery flow</b> to request a reset token and set a new password.</div>',
         unsafe_allow_html=True,
     )
+    st.caption(f"Demo account: `{DEMO_EMAIL}` / `{DEMO_PASSWORD}`")
 
     with st.form("sign_in_form", clear_on_submit=False, enter_to_submit=False):
-        email = st.text_input("Email", placeholder="student@university.edu")
+        email = st.text_input("Email", placeholder=DEMO_EMAIL)
         password = st.text_input("Password", type="password", placeholder="Enter password")
         submitted = st.form_submit_button("Sign in")
 
     if submitted:
         if email and password:
             if email_verifier(email):
-                st.success("Demo login submitted. Next step: connect `auth_service`.")
+                if login_user(email, password):
+                    st.session_state.logged_in = True
+                    st.session_state.current_user = email
+                    st.success(f"Signed in as {email}.")
+                else:
+                    st.session_state.logged_in = False
+                    st.session_state.current_user = None
+                    st.error("Invalid email or password.")
             else: st.error("Invalid email format, required format: example@email.com")
         else:
             st.error("Fill in both email and password.")
 
+    if st.session_state.logged_in and st.session_state.current_user:
+        st.info(f"Active session: {st.session_state.current_user}")
 
-# Sofya Grishkova (i6397764)
+
+# Sofya Grishkova - i6397764
 def _recover_tab() -> None:
     step = int(st.session_state.recovery_step)
     if step > 1 and not st.session_state.issued_token:
@@ -557,7 +626,10 @@ def _recover_tab() -> None:
         if request_submitted:
             if email:
                 if email_verifier(email):
-                     # Changed the issue function to the one in services/recovery_service
+                    if not user_exists(email):
+                        st.error("No demo account exists for this email.")
+                        return
+                    # Changed the issue function to the one in services/recovery_service
                     token = issue_token(email)
                     # service returns None when this email requested too many tokens
                     if token is None:
@@ -571,7 +643,7 @@ def _recover_tab() -> None:
                     _go_to_recovery_step(2)
                     st.success(f"Demo token issued for {email}")
                     with st.expander("Debug (for demo/testing)", expanded=True):
-                        st.code(f"Reset token: {token}", language="text")
+                        _render_token_preview(token)
                     _fragment_rerun()
                 else:
                     st.error("Invalid email format, required format: example@email.com")
@@ -618,8 +690,13 @@ def _recover_tab() -> None:
         elif new_password != confirm_password:
             st.error("Passwords do not match.")
         else:
-            st.success("Password reset completed (demo state).")
-            _reset_recovery_flow()
+            if reset_password(st.session_state.reset_email, new_password):
+                st.session_state.logged_in = False
+                st.session_state.current_user = None
+                st.success("Password reset completed. You can now sign in with the new password.")
+                _reset_recovery_flow()
+            else:
+                st.error("Password reset failed because the account was not found.")
     if st.session_state.recovery_step == 3:
         _render_back_button(3)
 
