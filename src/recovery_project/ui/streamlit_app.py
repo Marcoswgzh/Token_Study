@@ -17,9 +17,6 @@ if root_route not in sys.path:
 
 
 from src.recovery_project.services.auth_service import (
-    DEMO_EMAIL,
-    DEMO_PASSWORD,
-    ensure_demo_user,
     login_user,
     user_exists,
 )
@@ -508,9 +505,8 @@ def _inject_styles() -> None:
     )
 
 
-# Sofya Grishkova - i6397764
+# Timea Vojcikova - i6377033
 def _init_state() -> None:
-    ensure_demo_user()
     defaults = {
         "reset_email": "",
         "issued_token": None,
@@ -561,17 +557,16 @@ def _render_token_preview(token: str) -> None:
     )
 
 
-# Sofya Grishkova - i6397764
+# Timea Vojcikova - i6377033
 def _sign_in_tab() -> None:
     st.markdown('<div class="headline">Sign in</div>', unsafe_allow_html=True)
     st.markdown(
         '<div class="recovery-hint">Forgot your password? Open <b>Recovery flow</b> to request a reset token and set a new password.</div>',
         unsafe_allow_html=True,
     )
-    st.caption(f"Demo account: `{DEMO_EMAIL}` / `{DEMO_PASSWORD}`")
 
     with st.form("sign_in_form", clear_on_submit=False, enter_to_submit=False):
-        email = st.text_input("Email", placeholder=DEMO_EMAIL)
+        email = st.text_input("Email", placeholder="Enter your email")
         password = st.text_input("Password", type="password", placeholder="Enter password")
         submitted = st.form_submit_button("Sign in")
 
