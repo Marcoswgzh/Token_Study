@@ -27,13 +27,12 @@ def rate_limited_attack(
 
     # This outer loop controls the length of the token we are guessing, so it first guesses token with length 1, then length 2, and so on
     # We could potentially change this so that it only guesses tokens with the correct length
-    for current_length in range(1, policy.length + 1):
-        # Check if the user is already locked out before we even start generating combinations
-        if limiter.is_locked(target_email):
-            break
-        
+    
+    # Check if the user is already locked out before we even start generating combinations
+    if not limiter.is_locked(target_email):
+    
         # Generates every possible combination for the current length
-        for guess_tuple in itertools.product(policy.alphabet, repeat=current_length):
+        for guess_tuple in itertools.product(policy.alphabet, repeat=policy.length):
             guess_str = "".join(guess_tuple)
 
             # Stop processing if the email is locked
@@ -48,11 +47,6 @@ def rate_limited_attack(
                 break
             else:
                 limiter.record_failure(target_email)
-
-        # If the inner loop stopped because the token was guessed,
-        # or we got locked out, we must also break the outer loop to completely stop.
-        if limiter.is_locked(target_email) or guess_str == target_token:
-            break
 
     end = time.time()
 
