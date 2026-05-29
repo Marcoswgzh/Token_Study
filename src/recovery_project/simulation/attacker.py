@@ -19,9 +19,9 @@ class Attacker:
             
             print("\nBrute force check:")
 
-            for current_length in range(1, length + 1):
-                if found_event.is_set():
-                    break
+            for current_length in range(length, length + 1):
+               # if found_event.is_set():
+                #    break
                 
                 print(f"Trying all combinations of length {current_length}")
                 chunk_size = math.ceil(len(self.alphabet) / self.num_processes)

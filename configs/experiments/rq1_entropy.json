@@ -1,0 +1,120 @@
+[{
+  "name": "rq1_test1",
+  "trials": 100,
+  "attack_attempt_budget": 999999,
+  "attack_rate_per_second": 999999,
+  "token_policy": {
+    "length": 4,
+    "alphabet": "0123456789ABCDEF",
+    "ttl_seconds": 300,
+    "single_use": true
+  },
+  "rate_limit_policy":{
+    "enabled": false,
+    "max_attempts": 999999,
+    "window_seconds": 60
+  }
+},
+{
+  "name": "rq1_test2",
+  "trials": 100,
+  "attack_attempt_budget": 999999,
+  "attack_rate_per_second": 999999,
+  "token_policy": {
+    "length": 5,
+    "alphabet": "0123456789ABCDEF",
+    "ttl_seconds": 300,
+    "single_use": true
+  },
+  "rate_limit_policy":{
+    "enabled": false,
+    "max_attempts": 999999,
+    "window_seconds": 60
+  }
+},
+{
+  "name": "rq1_test3",
+  "trials": 100,
+  "attack_attempt_budget": 999999,
+  "attack_rate_per_second": 999999,
+  "token_policy": {
+    "length": 6,
+    "alphabet": "0123456789ABCDEF",
+    "ttl_seconds": 300,
+    "single_use": true
+  },
+  "rate_limit_policy":{
+    "enabled": false,
+    "max_attempts": 999999,
+    "window_seconds": 60
+  }
+},
+{
+  "name": "rq1_test4",
+  "trials": 100,
+  "attack_attempt_budget": 999999,
+  "attack_rate_per_second": 999999,
+  "token_policy": {
+    "length": 7,
+    "alphabet": "0123456789ABCDEF",
+    "ttl_seconds": 300,
+    "single_use": true
+  },
+  "rate_limit_policy":{
+    "enabled": false,
+    "max_attempts": 999999,
+    "window_seconds": 60
+  }
+},
+{
+  "name": "rq1_test5",
+  "trials": 100,
+  "attack_attempt_budget": 999999,
+  "attack_rate_per_second": 999999,
+  "token_policy": {
+    "length": 8,
+    "alphabet": "0123456789ABCDEF",
+    "ttl_seconds": 300,
+    "single_use": true
+  },
+  "rate_limit_policy":{
+    "enabled": false,
+    "max_attempts": 999999,
+    "window_seconds": 60
+  }
+},
+{
+  "name": "rq1_test6",
+  "trials": 100,
+  "attack_attempt_budget": 999999,
+  "attack_rate_per_second": 999999,
+  "token_policy": {
+    "length": 2,
+    "alphabet": "0123456789ABCDEF",
+    "ttl_seconds": 300,
+    "single_use": true
+  },
+  "rate_limit_policy":{
+    "enabled": false,
+    "max_attempts": 999999,
+    "window_seconds": 60
+  }
+},
+{
+  "name": "rq1_test7",
+  "trials": 100,
+  "attack_attempt_budget": 999999,
+  "attack_rate_per_second": 999999,
+  "token_policy": {
+    "length": 12,
+    "alphabet": "0123456789ABCDEF",
+    "ttl_seconds": 300,
+    "single_use": true
+  },
+  "rate_limit_policy":{
+    "enabled": false,
+    "max_attempts": 999999,
+    "window_seconds": 60
+  }
+}
+]
