@@ -1,0 +1,4 @@
+experiment,token_type,token_length,alphabet_size,token_space,ttl_seconds,attack_profile,attack_rate_per_second,attack_attempt_budget,effective_attempts,trials,success_count,success_rate,mean_attempts,mean_time_elapsed_ms,token_expired_count,expected_success_probability
+rq2_expiration_simple_numeric,numeric_pin,3,10,1000,10,aggressive,500,5000,5000,1000,991,0.9910,1041.24,2082.48,9,0.9933
+rq2_expiration_medium_hex,hex_token,4,16,65536,5,realistic,100,10000,500,1000,7,0.0070,497.84,4978.38,993,0.0076
+rq2_expiration_hard_alphanumeric,alphanumeric_token,6,36,2176782336,10,high_rate,1000,10000,10000,1000,0,0.0000,10000.00,10000.00,1000,0.0000046

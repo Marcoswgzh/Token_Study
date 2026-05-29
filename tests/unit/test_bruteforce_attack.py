@@ -2,7 +2,7 @@
 
 import multiprocessing
 
-from src.recovery_project.simulation.bruteforce import split_string, guess_parallel
+from recovery_project.simulation.bruteforce import split_string, guess_parallel
 
 def test_split_string():
     """Tests if the alphabet chunking math works correctly."""

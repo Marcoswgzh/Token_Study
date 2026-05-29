@@ -27,12 +27,23 @@ class ExpirationWindowAttacker():
                token_length: int,
                ttl_seconds: int,
                max_attempts_budget: int,
+               attack_rate_per_second: int | None = None,
                num_workers: int = None):
         """Start the attack (parallel random sampling) to find an active and valid recovery token
         
         Return:
             A dict with these params: success (bool), found_token (string), num_attempts (int), time_elapsed (float), attempts_per_sec (int)
         Some of these return values are for research purposes (like time and num of attacks), other than those it's just a structure so that we can work with the results (insert them as recovery tokens)"""
+
+        if attack_rate_per_second is not None:
+            return self._rate_bounded_attack(
+                token_hash=token_hash,
+                alphabet=alphabet,
+                token_length=token_length,
+                ttl_seconds=ttl_seconds,
+                max_attempts_budget=max_attempts_budget,
+                attack_rate_per_second=attack_rate_per_second,
+            )
 
         cpu_count = multiprocessing.cpu_count()
         if num_workers is None:
@@ -79,6 +90,54 @@ class ExpirationWindowAttacker():
             "attempts": total_attempts,
             "time_elapsed": elapsed_time,
             "attempts_per_second": attempts_per_second
+        }
+
+    # Sofya Grishkova i6397764: rate-bounded expiration attack simulation.
+    @staticmethod
+    def _rate_bounded_attack(
+        token_hash: str,
+        alphabet: str,
+        token_length: int,
+        ttl_seconds: int,
+        max_attempts_budget: int,
+        attack_rate_per_second: int,
+    ):
+        """Run the expiration-window attack using the configured attack rate.
+
+        This is a simulation rather than a wall-clock sleep. The important
+        security variable for RQ2 is how many guesses fit inside the token TTL,
+        so the attack window is capped at ttl_seconds * attack_rate_per_second.
+        """
+        max_attempts_by_ttl = max(0, ttl_seconds * attack_rate_per_second)
+        allowed_attempts = min(max_attempts_budget, max_attempts_by_ttl)
+        service = TokenService(alphabet=alphabet, token_length=token_length)
+
+        for attempt_number in range(1, allowed_attempts + 1):
+            candidate = ''.join(random.choice(alphabet) for _ in range(token_length))
+
+            if service.verify_token(candidate, token_hash):
+                elapsed_time = attempt_number / attack_rate_per_second
+                return {
+                    "success": True,
+                    "found_token": candidate,
+                    "attempts": attempt_number,
+                    "time_elapsed": elapsed_time,
+                    "attempts_per_second": attack_rate_per_second,
+                }
+
+        if max_attempts_budget > max_attempts_by_ttl:
+            elapsed_time = ttl_seconds
+        elif attack_rate_per_second > 0:
+            elapsed_time = allowed_attempts / attack_rate_per_second
+        else:
+            elapsed_time = 0
+
+        return {
+            "success": False,
+            "found_token": None,
+            "attempts": allowed_attempts,
+            "time_elapsed": elapsed_time,
+            "attempts_per_second": attack_rate_per_second,
         }
 
         

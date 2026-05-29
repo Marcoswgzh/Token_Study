@@ -33,6 +33,7 @@ def run_trial(trial_id: int, config: ExperimentConfig) -> TrialResult:
     service = TokenService(alphabet=tp.alphabet, token_length=tp.length)
     _token, token_hash = service.generate_token()
  
+    # Sofya Grishkova i6397764: run the expiration attack with the configured rate.
     # 2. Run attack
     attacker = ExpirationWindowAttacker()
     result = attacker.attack(
@@ -41,6 +42,7 @@ def run_trial(trial_id: int, config: ExperimentConfig) -> TrialResult:
         token_length=tp.length,
         ttl_seconds=tp.ttl_seconds,
         max_attempts_budget=config.attack_attempt_budget,
+        attack_rate_per_second=config.attack_rate_per_second,
     )
  
     # 3. Derive fields that TrialResult needs but the attacker doesn't return
