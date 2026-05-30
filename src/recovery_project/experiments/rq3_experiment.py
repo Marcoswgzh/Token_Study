@@ -27,10 +27,9 @@ def rate_limited_attack(
 
     # This outer loop controls the length of the token we are guessing, so it first guesses token with length 1, then length 2, and so on
     # We could potentially change this so that it only guesses tokens with the correct length
-    
+
     # Check if the user is already locked out before we even start generating combinations
     if not limiter.is_locked(target_email):
-    
         # Generates every possible combination for the current length
         for guess_tuple in itertools.product(policy.alphabet, repeat=policy.length):
             guess_str = "".join(guess_tuple)
@@ -76,10 +75,10 @@ def save_to_csv(data: list[dict], filename: str):
         writer.writerows(data)
 
 
-# Run a batch of attacks and save results to csv
+# Run a batch of attacks and return results as a list
 def run_rq3_exp(
-    total_runs: int, output_filename: str, policy: TokenPolicy, limiter: RateLimiter
-):
+    total_runs: int, exp_name: str, policy: TokenPolicy, limiter: RateLimiter
+) -> list[dict]:
     service = TokenService(policy.alphabet, policy.length)
     results_data = []
 
@@ -97,41 +96,47 @@ def run_rq3_exp(
             policy=policy,
         )
 
+        result["Experiment"] = exp_name
         results_data.append(result)
 
-    save_to_csv(results_data, output_filename)
+    return results_data
 
 
 # Run the experiments using the parameters in the JSON file
 def run_with_json(json_filepath: str):
-    with open(json_filepath, 'r') as file:
+    with open(json_filepath, "r") as file:
         experiments_data = json.load(file)
+
+    all_results = []
 
     # Iterate over every experiment in the JSON file
     for experiments in experiments_data:
-        exp_name = experiments["name"] 
+        exp_name = experiments["name"]
         trials = experiments["trials"]
 
         # Extract token settings and build token policy object
         token_config = experiments["token_policy"]
-        policy = TokenPolicy(length=token_config["length"], alphabet=token_config["alphabet"])
+        policy = TokenPolicy(
+            length=token_config["length"], alphabet=token_config["alphabet"]
+        )
 
         # Extract rate limiter settings and build rate limiter object
         rate_config = experiments["rate_limit_policy"]
-        limiter = RateLimiter(max_attempts=rate_config["max_attempts"], window_seconds=rate_config["window_seconds"])
-
-        # Name the output file based on the experiment name
-        # Each experiment will have a different csv file
-        output_csv = f"{exp_name}_results.csv"
-
-        # Pass all objects to the runner to perform the experiments
-        run_rq3_exp(
-            total_runs=trials,
-            output_filename=output_csv,
-            policy=policy,
-            limiter=limiter
+        limiter = RateLimiter(
+            max_attempts=rate_config["max_attempts"],
+            window_seconds=rate_config["window_seconds"],
         )
 
-        
+        results = run_rq3_exp(
+            total_runs=trials,
+            exp_name=exp_name,
+            policy=policy,
+            limiter=limiter,
+        )
+        all_results.extend(results)
+
+    save_to_csv(all_results, "rq3_results.csv")
+
+
 if __name__ == "__main__":
     run_with_json("configs/experiments/rq3_rate_limiting.json")
