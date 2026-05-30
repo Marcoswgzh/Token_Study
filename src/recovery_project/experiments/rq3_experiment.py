@@ -1,3 +1,5 @@
+# Writers: Marcos Wang Zhu, Giorgio Di Rosa
+
 import csv
 import itertools
 import json

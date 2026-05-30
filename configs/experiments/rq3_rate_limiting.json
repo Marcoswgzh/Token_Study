@@ -45,7 +45,7 @@
   },
   "rate_limit_policy":{
     "enabled": true,
-    "max_attempts": 100,
+    "max_attempts": 30,
     "window_seconds": 60
   }
 },
@@ -140,7 +140,7 @@
   "attack_attempt_budget": 999999,
   "attack_rate_per_second": 999999,
   "token_policy": {
-    "length": 4,
+    "length": 6,
     "alphabet": "0123456789ABCDEF",
     "ttl_seconds": 300,
     "single_use": true
@@ -150,5 +150,22 @@
     "max_attempts": 50,
     "window_seconds": 60
   }
+},
+{
+  "name": "rq3_test10",
+  "trials": 100,
+  "attack_attempt_budget": 999999,
+  "attack_rate_per_second": 999999,
+  "token_policy": {
+    "length": 6,
+    "alphabet": "0123456789",
+    "ttl_seconds": 300,
+    "single_use": true
+  },
+  "rate_limit_policy":{
+    "enabled": true,
+    "max_attempts": 5, 
+    "window_seconds": 60
+  }                                 
 }
 ]
