@@ -45,6 +45,7 @@ def rate_limited_attack(
                     break
                 else:
                     limiter.record_failure(target_email)
+        # Exhaustive guessing
         elif strategy == "exhaustive":
             # Generates every possible combination for the exact length
             for guess_tuple in itertools.product(policy.alphabet, repeat=policy.length):
@@ -88,7 +89,7 @@ def save_to_csv(data: list[dict], filename: str):
         writer = csv.DictWriter(csvfile, fieldnames=headers)
         # Writes the top row (column names)
         writer.writeheader()
-        # Writes all the actual data rows at once
+        # Writes all the actual data rows 
         writer.writerows(data)
 
 
