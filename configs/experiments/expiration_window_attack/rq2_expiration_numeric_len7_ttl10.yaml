@@ -1,0 +1,14 @@
+# RQ2: expiration window attack - numeric alphabet, token length 7, TTL 10s
+name: rq2_expiration_numeric_len7_ttl10
+trials: 1000
+attack_attempt_budget: 50000
+attack_rate_per_second: 5000
+token_policy:
+  length: 7
+  alphabet: "0123456789"
+  ttl_seconds: 10
+  single_use: true
+rate_limit_policy:
+  enabled: false
+  max_attempts: 999999
+  window_seconds: 60

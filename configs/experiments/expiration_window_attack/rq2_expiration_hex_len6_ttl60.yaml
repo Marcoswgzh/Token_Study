@@ -1,0 +1,14 @@
+# RQ2: expiration window attack - hex alphabet, token length 6, TTL 60s
+name: rq2_expiration_hex_len6_ttl60
+trials: 1000
+attack_attempt_budget: 50000
+attack_rate_per_second: 5000
+token_policy:
+  length: 6
+  alphabet: "0123456789ABCDEF"
+  ttl_seconds: 60
+  single_use: true
+rate_limit_policy:
+  enabled: false
+  max_attempts: 999999
+  window_seconds: 60
