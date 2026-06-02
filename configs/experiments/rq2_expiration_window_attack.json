@@ -1,0 +1,954 @@
+[
+  {
+    "name": "rq2_expiration_hex_len4_ttl10",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len4_ttl120",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len4_ttl180",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 180,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len4_ttl240",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 240,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len4_ttl30",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len4_ttl300",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 300,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len4_ttl60",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len5_ttl10",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len5_ttl120",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len5_ttl180",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 180,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len5_ttl240",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 240,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len5_ttl30",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len5_ttl300",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 300,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len5_ttl60",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len6_ttl10",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len6_ttl120",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len6_ttl180",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 180,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len6_ttl240",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 240,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len6_ttl30",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len6_ttl300",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 300,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len6_ttl60",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len7_ttl10",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len7_ttl120",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len7_ttl180",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 180,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len7_ttl240",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 240,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len7_ttl30",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len7_ttl300",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 300,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len7_ttl60",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len4_ttl10",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len4_ttl120",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len4_ttl180",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789",
+      "ttl_seconds": 180,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len4_ttl240",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789",
+      "ttl_seconds": 240,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len4_ttl30",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len4_ttl300",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789",
+      "ttl_seconds": 300,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len4_ttl60",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len5_ttl10",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len5_ttl120",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len5_ttl180",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789",
+      "ttl_seconds": 180,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len5_ttl240",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789",
+      "ttl_seconds": 240,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len5_ttl30",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len5_ttl300",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789",
+      "ttl_seconds": 300,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len5_ttl60",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len6_ttl10",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len6_ttl120",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len6_ttl180",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789",
+      "ttl_seconds": 180,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len6_ttl240",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789",
+      "ttl_seconds": 240,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len6_ttl30",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len6_ttl300",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789",
+      "ttl_seconds": 300,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len6_ttl60",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len7_ttl10",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len7_ttl120",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len7_ttl180",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 180,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len7_ttl240",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 240,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len7_ttl30",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len7_ttl300",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 300,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  },
+  {
+    "name": "rq2_expiration_numeric_len7_ttl60",
+    "trials": 1000,
+    "attack_attempt_budget": 50000,
+    "attack_rate_per_second": 5000,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": false,
+      "max_attempts": 999999,
+      "window_seconds": 60
+    }
+  }
+]
