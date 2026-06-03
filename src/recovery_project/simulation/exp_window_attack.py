@@ -10,6 +10,7 @@ from typing import Any
 
 from ..services.token_service import TokenService
 
+# Main writer: Anna Kálmánczhelyi
 class ExpirationWindowAttacker():
     """Parallel brute force script where we try to guess randomly the token. It's not exhaustive, so we just try random combinations. 
     To generate tokens, we use the TokenService.
@@ -20,13 +21,13 @@ class ExpirationWindowAttacker():
     If the code doesn't run because of the TokenService import, run as a module like:
     "python -m src.recovery_project.simulation.exp_window_attack"
     """
-
+    # Main writer: Anna Kálmánczhelyi
     def attack(self, 
                token_hash:str,
                alphabet: str,
                token_length: int,
                ttl_seconds: int,
-               max_attempts_budget: int,
+               max_attempts_budget: int | None = None,
                attack_rate_per_second: int | None = None,
                num_workers: int = None):
         """Start the attack (parallel random sampling) to find an active and valid recovery token
@@ -41,7 +42,6 @@ class ExpirationWindowAttacker():
                 alphabet=alphabet,
                 token_length=token_length,
                 ttl_seconds=ttl_seconds,
-                max_attempts_budget=max_attempts_budget,
                 attack_rate_per_second=attack_rate_per_second,
             )
 
@@ -92,6 +92,7 @@ class ExpirationWindowAttacker():
             "attempts_per_second": attempts_per_second
         }
 
+    # Code modified by Anna Kálmánczhelyi to remove max_attempts_budget that was making experiments stop before the ttl end is reached
     # Sofya Grishkova i6397764: rate-bounded expiration attack simulation.
     @staticmethod
     def _rate_bounded_attack(
@@ -99,7 +100,7 @@ class ExpirationWindowAttacker():
         alphabet: str,
         token_length: int,
         ttl_seconds: int,
-        max_attempts_budget: int,
+        #max_attempts_budget: int,
         attack_rate_per_second: int,
     ):
         """Run the expiration-window attack using the configured attack rate.
@@ -108,9 +109,12 @@ class ExpirationWindowAttacker():
         security variable for RQ2 is how many guesses fit inside the token TTL,
         so the attack window is capped at ttl_seconds * attack_rate_per_second.
         """
-        max_attempts_by_ttl = max(0, ttl_seconds * attack_rate_per_second)
-        allowed_attempts = min(max_attempts_budget, max_attempts_by_ttl)
-        service = TokenService(alphabet=alphabet, token_length=token_length)
+        allowed_attempts = max(0, ttl_seconds * attack_rate_per_second)
+
+        service = TokenService(
+            alphabet=alphabet,
+            token_length=token_length,
+        )
 
         for attempt_number in range(1, allowed_attempts + 1):
             candidate = ''.join(random.choice(alphabet) for _ in range(token_length))
@@ -125,12 +129,13 @@ class ExpirationWindowAttacker():
                     "attempts_per_second": attack_rate_per_second,
                 }
 
-        if max_attempts_budget > max_attempts_by_ttl:
+        elapsed_time = ttl_seconds
+        """ if max_attempts_budget > max_attempts_by_ttl:
             elapsed_time = ttl_seconds
         elif attack_rate_per_second > 0:
             elapsed_time = allowed_attempts / attack_rate_per_second
         else:
-            elapsed_time = 0
+            elapsed_time = 0 """
 
         return {
             "success": False,
@@ -141,7 +146,7 @@ class ExpirationWindowAttacker():
         }
 
         
-
+    # Main writer: Anna Kálmánczhelyi
     @staticmethod
     def _worker_loop(worker_id: int, 
                      token_hash:str,
@@ -183,6 +188,7 @@ class ExpirationWindowAttacker():
             with attempts_lock:
                 attempts_counter.value += 1
 
+# Main writer: Anna Kálmánczhelyi
 if __name__ == "__main__":
     """This is for testing purposes. The commented out lines are there for initial testing: smaller alphabet and token length because the brute force has a tendency to run out of time on bigger alphabets and longer token lengths before finding a good token."""
 

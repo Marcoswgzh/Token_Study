@@ -39,7 +39,6 @@ def run_experiment(experiment: dict) -> list[dict]:
             alphabet=token_policy["alphabet"],
             token_length=token_policy["length"],
             ttl_seconds=token_policy["ttl_seconds"],
-            max_attempts_budget=experiment["attack_attempt_budget"],
             attack_rate_per_second=experiment["attack_rate_per_second"],
         )
 
