@@ -1,6 +1,8 @@
 # Writers: Marcos Wang Zhu, Giorgio Di Rosa
 
 import csv
+from dataclasses import asdict
+from datetime import datetime
 import itertools
 import json
 import sys
@@ -16,6 +18,7 @@ if root_route not in sys.path:
 from src.recovery_project.config import TokenPolicy
 from src.recovery_project.services.rate_limiter import RateLimiter
 from src.recovery_project.services.token_service import TokenService
+from src.recovery_project.domain.models import TrialResult
 
 
 # Exhaustive and random bruteforce attacks on one specific user (target_email), respecting the rate limiter. Returns a dictionary with different metrics
@@ -27,6 +30,7 @@ def rate_limited_attack(
 ) -> dict:
     attempts_made = 0
     start = time.time()
+    success = False
 
     # Check if the user is already locked out before we even start generating combinations
     if not limiter.is_locked(target_email):
@@ -42,6 +46,7 @@ def rate_limited_attack(
                 # Check if the token was correctly guessed
                 if guess_str == target_token:
                     limiter.record_success(target_email)
+                    success = True
                     break
                 else:
                     limiter.record_failure(target_email)
@@ -60,6 +65,7 @@ def rate_limited_attack(
                 # Check if the token was correctly guessed
                 if guess_str == target_token:
                     limiter.record_success(target_email)
+                    success = True
                     break
                 else:
                     limiter.record_failure(target_email)
@@ -67,11 +73,9 @@ def rate_limited_attack(
     end = time.time()
 
     return {
-        "Strategy": strategy,
-        "Email": target_email,
-        "Total guesses made": attempts_made,
-        "Time alive (ms)": round((end - start) * 1000, 4),
-        "Result": "Blocked" if limiter.is_locked(target_email) else "Cracked"
+        "success": success,
+        "attempts_made": attempts_made,
+        "time_elapsed_ms": round((end - start) * 1000, 4)
     }
 
 
@@ -95,7 +99,7 @@ def save_to_csv(data: list[dict], filename: str):
 
 # Run a batch of attacks and return results as a list
 def run_rq3_exp(
-    total_runs: int, exp_name: str, policy: TokenPolicy, limiter: RateLimiter, strategy: str
+    total_runs: int, exp_name: str, policy: TokenPolicy, limiter: RateLimiter, strategy: str, ttl_seconds: int, rate_limit_enabled: bool
 ) -> list[dict]:
     service = TokenService(policy.alphabet, policy.length)
     results_data = []
@@ -107,7 +111,7 @@ def run_rq3_exp(
         target_token, _ = service.generate_token()
 
         # Launch the attack and capture the resulting dictionary
-        result = rate_limited_attack(
+        metrics = rate_limited_attack(
             target_token=target_token,
             limiter=limiter,
             target_email=email,
@@ -115,8 +119,26 @@ def run_rq3_exp(
             strategy=strategy
         )
 
-        result["Experiment"] = exp_name
-        results_data.append(result)
+        trial_result = TrialResult(
+            trial_id=id,
+            experiment_name=exp_name,
+            token_length=policy.length,
+            alphabet_size=len(policy.alphabet),
+            ttl_seconds=ttl_seconds,
+            rate_limit_enabled=rate_limit_enabled,
+            rate_limit_max_attempts=limiter.max_attempts,
+            rate_limit_window_seconds=limiter.window_seconds,
+            success=metrics["success"],
+            attempts_made=metrics["attempts_made"],
+            attempts_blocked=(metrics["attempts_made"] - 1) if metrics["success"] else metrics["attempts_made"],
+            time_elapsed_ms=metrics["time_elapsed_ms"],
+            token_expired=(metrics["time_elapsed_ms"]/1000) > ttl_seconds,
+            timestamp=datetime.now().isoformat()
+        )
+        row_dict = asdict(trial_result)
+        row_dict["strategy"] = strategy
+
+        results_data.append(row_dict)
 
     return results_data
 
@@ -152,7 +174,9 @@ def run_with_json(json_filepath: str):
             exp_name=exp_name,
             policy=policy,
             limiter=limiter,
-            strategy=strategy
+            strategy=strategy,
+            ttl_seconds=token_config["ttl_seconds"],
+            rate_limit_enabled=rate_config["enabled"]
         )
         all_results.extend(results)
     
@@ -161,9 +185,9 @@ def run_with_json(json_filepath: str):
     random_results = []
 
     for row in all_results:
-        if row["Strategy"] == "exhaustive":
+        if row["strategy"] == "exhaustive":
             exhaustive_results.append(row)
-        elif row["Strategy"] == "random":
+        elif row["strategy"] == "random":
             random_results.append(row)
         
     save_to_csv(exhaustive_results, "rq3_exhaustive_results.csv")
