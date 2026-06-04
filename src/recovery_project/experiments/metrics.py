@@ -17,31 +17,42 @@ log = get_logger(__name__)
 _FIELD_NAMES = [f.name for f in fields(TrialResult)]
 
 
-def save_results(results: list[TrialResult], output_dir: Path | str) -> Path:
+def save_results(results: list[TrialResult] or dict, output_dir: Path | str) -> Path:
     """Write trial results to a timestamped CSV and return its path."""
-    output_dir = Path(output_dir)
+    base_dir = Path(__file__).resolve().parent.parent.parent.parent
+    output_dir = Path(base_dir / "data" /  output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     if not results:
         log.warning("No results to save")
         return output_dir
 
-    experiment_name = results[0].experiment_name
+    if isinstance(results[0], TrialResult):
+        experiment_name = results[0].experiment_name
+    else:
+        experiment_name = results[0].get("trial_name")
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
     filename = f"{experiment_name}_{ts}.csv"
     path = output_dir / filename
 
     with open(path, "w", newline="") as fh:
-        writer = csv.DictWriter(fh, fieldnames=_FIELD_NAMES)
-        writer.writeheader()
-        for result in results:
-            writer.writerow(asdict(result))
+        if isinstance(results[0], TrialResult):
+            writer = csv.DictWriter(fh, fieldnames=_FIELD_NAMES)
+            writer.writeheader()
+            for result in results:
+                writer.writerow(asdict(result))
+        else:
+            writer = csv.DictWriter(fh, fieldnames=results[0].keys())
+            writer.writeheader()
+            for result in results:
+                writer.writerow(result)
+
 
     log.info("Saved %d rows to %s", len(results), path)
     return path
 
 
-def compute_summary(results: list[TrialResult]) -> dict:
+def compute_summary(results: list[TrialResult], trial_name: str) -> dict:
     """Compute aggregate statistics and print them to the console."""
     if not results:
         return {}
@@ -58,6 +69,7 @@ def compute_summary(results: list[TrialResult]) -> dict:
     success_attempts = [r.attempts_made for r in successes] if successes else [0]
 
     summary = {
+        "trial_name" : trial_name,
         "total_trials": total,
         "success_count": len(successes),
         "success_rate": round(success_rate, 4),

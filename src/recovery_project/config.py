@@ -3,9 +3,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-import yaml
+import json
 
-
+#written by Sofya Grishkova
 @dataclass(slots=True)
 class TokenPolicy:
     length: int = 6
@@ -13,37 +13,50 @@ class TokenPolicy:
     ttl_seconds: int = 300
     single_use: bool = True
 
-
+#written by Sofya Grishkova
 @dataclass(slots=True)
 class RateLimitPolicy:
     enabled: bool = False
     max_attempts: int = 5
     window_seconds: int = 60
 
-
+#written by Sofya Grishkova
 @dataclass(slots=True)
 class ExperimentConfig:
     name: str
     trials: int
-    attack_attempt_budget: int
+    strategy: str
     attack_rate_per_second: int
     token_policy: TokenPolicy
     rate_limit_policy: RateLimitPolicy
 
 #function written by Giorgio Di Rosa
-def load_experiment_config(path: Path | str) -> ExperimentConfig:
-    """Load an experiment configuration from a YAML file."""
-    with open(path, "r") as fh:
-        raw = yaml.safe_load(fh)
+def load_experiment_config(file_name: str ) -> list[ExperimentConfig]:
+    base_dir = Path(__file__).resolve().parent.parent.parent
+    config_path = base_dir / "configs" / "experiments"/ file_name
+    with open(config_path, "r") as f:
+        raw = json.load(f)
 
-    token_policy = TokenPolicy(**raw.get("token_policy", {}))
-    rate_limit_policy = RateLimitPolicy(**raw.get("rate_limit_policy", {}))
+    configs = []
 
-    return ExperimentConfig(
-        name=raw["name"],
-        trials=raw["trials"],
-        attack_attempt_budget=raw["attack_attempt_budget"],
-        attack_rate_per_second=raw["attack_rate_per_second"],
-        token_policy=token_policy,
-        rate_limit_policy=rate_limit_policy,
-    )
+#todo fix .json files: include strategy (rq2 = NONE), attack_rate_per_seconds(rq2 = -1), in token_policy ttl(rq3 = -1), in rate_limit_policy everything(rq2 = everything -1)
+#TODO delete attack_attempt_budget from rq2 and 3 .jsons
+    for experiment in raw:
+        token_policy = TokenPolicy(**experiment["token_policy"])
+        rate_limit_policy = RateLimitPolicy(**experiment["rate_limit_policy"])
+        configs.append(ExperimentConfig(
+            name=experiment["name"],
+            trials=experiment["trials"],
+            strategy= experiment["strategy"],
+            attack_rate_per_second=experiment["attack_rate_per_second"],
+            token_policy=token_policy,
+            rate_limit_policy=rate_limit_policy,
+        ))
+    return configs
+
+
+def main () -> None:
+    print(load_experiment_config("rq1_entropy.json"))
+
+if __name__ == "__main__":
+   main()
