@@ -22,7 +22,6 @@ class TokenService:
 # Reviewer: Nadja Poltoracki - i6403661
     def generate_token(self) -> tuple:
         token = "".join(secrets.choice(self.alphabet) for _ in range(self.token_length))
-        # TODO: Delete duplicate in recovery service?
         token_hash = hashlib.sha256(token.encode()).hexdigest()
         return token, token_hash
 

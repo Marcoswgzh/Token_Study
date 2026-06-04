@@ -51,7 +51,6 @@ def validate_token(email: str, provided_token: str) -> bool:
     if validation_limiter.is_locked(email):
         return False
 
-    # DUPLICATE ?
     provided_hash = hashlib.sha256(provided_token.encode()).hexdigest()
     record = token_repository.find_token(provided_hash)
 
