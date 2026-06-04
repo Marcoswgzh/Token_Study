@@ -5,21 +5,22 @@ Core responsibilities:
 - validate token (entropy/TTL/single-use behavior)
 - reset password on successful recovery
 """
+from __future__ import annotations
 
 # Writer: Anna Kálmánczhelyi
 import hashlib
 from datetime import datetime, timedelta
 
-from .rate_limiter import request_limiter, validation_limiter
-from .token_service import TokenService
-from .auth_service import update_password
+from rate_limiter import request_limiter, validation_limiter
+from token_service import TokenService
+from auth_service import update_password
 from ..repositories.token_repository import TokenRepository
 
 service = TokenService()
 token_repository = TokenRepository()
 
 # Writer: Anna Kálmánczhelyi
-# Sofya Grishkova - i6397764
+# Reviwer: Sofya Grishkova - i6397764
 def issue_token(email: str) -> str | None:
     # do not issue endless tokens for the same account
     if request_limiter.is_locked(email):
@@ -44,12 +45,13 @@ def issue_token(email: str) -> str | None:
     return token
 
 # Writer: Anna Kálmánczhelyi
-# Sofya Grishkova - i6397764
+# Reviewer: Sofya Grishkova - i6397764
 def validate_token(email: str, provided_token: str) -> bool:
     # if the account is locked, even a correct token should not work yet
     if validation_limiter.is_locked(email):
         return False
 
+    # DUPLICATE ?
     provided_hash = hashlib.sha256(provided_token.encode()).hexdigest()
     record = token_repository.find_token(provided_hash)
 
@@ -79,10 +81,11 @@ def validate_token(email: str, provided_token: str) -> bool:
     return True
 
 # Writer: Anna Kálmánczhelyi
-# Sofya Grishkova - i6397764
+# Reviewer: Sofya Grishkova - i6397764
 def reset_password(email: str, new_password: str) -> bool:
     return update_password(email, new_password)
 
+# TODO: Delete
 # Writer: Anna Kálmánczhelyi
 # For testing purposes
 if __name__ == "__main__":

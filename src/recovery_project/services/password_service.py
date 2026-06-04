@@ -1,3 +1,4 @@
+""" Handles Password hashing and verification logic for User"""
 # Refactored by: Nadja Poltoracki - i6403661
 from __future__ import annotations
 

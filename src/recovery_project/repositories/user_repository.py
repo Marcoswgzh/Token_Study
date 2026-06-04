@@ -1,4 +1,4 @@
-"""User repository interface / in-memory adapter """
+"""User repository interface / in-memory adapter"""
 
 from typing import Optional
 from ..domain.models import User
@@ -22,7 +22,7 @@ class UserRepository:
         #if user is found (based on user_id), return it
         return self.users.get(user_id)
 
-#function writer Erika Skodova
+    # Writer: Erika Skodova
     def find_email(self, email: str) -> Optional[User]:
         # if user is found (based on email), return user ID
         for user in self.users.values():
