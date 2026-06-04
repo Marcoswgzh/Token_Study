@@ -34,12 +34,24 @@ def run_experiment(experiment: dict) -> list[dict]:
     for trial in range(1, experiment["trials"] + 1):
         _, token_hash = service.generate_token()
 
+        print(
+            f"DEBUG: rate={experiment.get('attack_rate_per_second')}, "
+            f"ttl={token_policy['ttl_seconds']}"
+        )
+
         attack_result = attacker.attack(
             token_hash=token_hash,
             alphabet=token_policy["alphabet"],
             token_length=token_policy["length"],
             ttl_seconds=token_policy["ttl_seconds"],
-            attack_rate_per_second=experiment["attack_rate_per_second"],
+            max_attempts_budget=experiment.get("max_attempts_budget"), 
+            attack_rate_per_second=experiment.get("attack_rate_per_second")
+        )
+        print(
+            f"Trial {trial}: "
+            f"success={attack_result['success']} "
+            f"time={attack_result['time_elapsed']:.2f}s "
+            f"attempts={attack_result['attempts']}"
         )
 
         results.append(
