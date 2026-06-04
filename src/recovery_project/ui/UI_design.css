@@ -1,0 +1,472 @@
+:root {
+    --bg: rgb(15, 17, 22);
+    --panel: #101625;
+    --panel-2: rgb(15, 17, 22);
+    --panel-3: #131b2d;
+    --border: #232c44;
+    --text: #edf1fb;
+    --muted: #98a3bd;
+    --accent: #2f6df6;
+    --accent-2: #5fa8ff;
+    --input: #151d31;
+}
+
+#MainMenu, footer,
+header[data-testid="stHeader"],
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+[data-testid="stStatusWidget"],
+[data-testid="stElementToolbar"],
+[data-testid="stElementToolbarButton"],
+[data-testid="stElementToolbarToggleButton"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+}
+
+.element-container:has(iframe[title^="streamlit_lottie"]) [data-testid="stElementToolbar"],
+.element-container:has(iframe[title^="streamlit_lottie"]) [data-testid="stElementToolbarButton"] {
+    display: none !important;
+}
+
+iframe[title^="streamlit_lottie"] {
+    border: 0 !important;
+    background: transparent !important;
+    border-radius: 18px !important;
+}
+
+.element-container:has(iframe[title^="streamlit_lottie"]) {
+    background: rgb(15, 17, 22) !important;
+    border-radius: 22px;
+    padding: 0.5rem;
+}
+
+.stApp {
+    background: radial-gradient(circle at 94% 82%, rgba(72, 151, 255, 0.07), transparent 48%),
+    radial-gradient(circle at 86% 20%, rgba(47, 109, 246, 0.05), transparent 44%),
+    radial-gradient(circle at 102% 10%, rgba(120, 170, 255, 0.025), transparent 36%),
+    linear-gradient(
+            90deg,
+            rgb(15, 17, 22) 0%,
+            rgb(15, 17, 22) 52%,
+            rgb(17, 20, 27) 74%,
+            rgb(19, 24, 35) 100%
+    ),
+    var(--bg);
+    color: var(--text);
+}
+
+[data-testid="stAppViewContainer"] {
+    background: transparent;
+}
+
+.block-container {
+    max-width: 1400px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 5.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.ui-shell-marker {
+    display: none;
+}
+
+div[data-testid="stVerticalBlock"]:has(.ui-shell-marker) > div[data-testid="stHorizontalBlock"] {
+    align-items: stretch;
+    gap: 1rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    border-radius: 28px;
+    padding: 14px;
+    min-height: 760px;
+    transform: translateY(0);
+}
+
+div[data-testid="stVerticalBlock"]:has(.ui-shell-marker),
+> div[data-testid="stHorizontalBlock"],
+> div[data-testid="column"] {
+    align-self: stretch;
+}
+
+div[data-testid="stVerticalBlock"]:has(.ui-shell-marker),
+> div[data-testid="stHorizontalBlock"],
+> div[data-testid="column"]:first-child,
+> div[data-testid="stVerticalBlock"] {
+    background: rgb(15, 17, 22);
+    border: none;
+    border-radius: 22px;
+    padding: 0.85rem 0.85rem 0.35rem 0.85rem;
+    min-height: 730px;
+}
+
+div[data-testid="stVerticalBlock"]:has(.ui-shell-marker),
+> div[data-testid="stHorizontalBlock"],
+> div[data-testid="column"]:last-child,
+> div[data-testid="stVerticalBlock"] {
+    background: linear-gradient(180deg, rgba(18, 24, 40, 0.97) 0%, rgba(13, 18, 31, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 22px;
+    padding: 1.15rem 1.15rem 1rem 1.15rem;
+    min-height: 730px;
+}
+
+.top-line {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: var(--muted);
+    font-size: .95rem;
+    margin: 0 0 1.25rem 0;
+    padding: 0.35rem 0.1rem;
+}
+
+.top-line b {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.headline {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 .9rem 0;
+}
+
+.subtext {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 1.05rem;
+}
+
+.security-note {
+    background: rgba(47, 109, 246, 0.10);
+    border: 1px solid rgba(95, 168, 255, 0.22);
+    color: #bfd7ff;
+    border-radius: 14px;
+    padding: .75rem .9rem;
+    font-size: .9rem;
+    margin-bottom: 1rem;
+}
+
+.security-note code {
+    color: #d8e7ff;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 7px;
+    padding: 0.1rem 0.35rem;
+}
+
+[data-testid="stCodeBlock"] pre,
+[data-testid="stCodeBlock"] code {
+    background: #151d31 !important;
+    color: #edf1fb !important;
+    border-color: rgba(95, 168, 255, 0.18) !important;
+}
+
+.token-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    background: #151d31;
+    border: 1px solid rgba(95, 168, 255, 0.24);
+    border-radius: 14px;
+    padding: 0.85rem 0.95rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.token-preview span {
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    font-weight: 600;
+}
+
+.token-preview strong {
+    color: #edf1fb;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 1.15rem;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.metric-chip {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: .65rem .8rem;
+    margin-bottom: .6rem;
+}
+
+.metric-chip strong {
+    display: block;
+    color: var(--text);
+    font-size: .95rem;
+}
+
+.metric-chip span {
+    color: var(--muted);
+    font-size: .85rem;
+}
+
+[data-testid="stRadio"] {
+    margin-bottom: 1.15rem;
+}
+
+[data-testid="stRadio"] > div {
+    background: transparent !important;
+}
+
+[data-testid="stRadio"] div[role="radiogroup"] {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: .45rem;
+    align-items: center;
+}
+
+[data-testid="stRadio"] label[data-baseweb="radio"] {
+    margin: 0 !important;
+    min-height: 40px;
+    padding: 0.55rem 0.95rem;
+    gap: 0 !important;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.03);
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: auto !important;
+    cursor: pointer;
+    transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease;
+    text-align: center;
+}
+
+[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
+    display: none !important;
+}
+
+[data-testid="stRadio"] label[data-baseweb="radio"] > div:last-child {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+[data-testid="stRadio"] label[data-baseweb="radio"] p,
+[data-testid="stRadio"] label[data-baseweb="radio"] span {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    color: var(--muted) !important;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-align: center !important;
+}
+
+[data-testid="stRadio"] label[data-baseweb="radio"]:hover {
+    border-color: rgba(95, 168, 255, 0.18);
+}
+
+[data-testid="stRadio"] label[data-baseweb="radio"]:has(input:checked) {
+    background: rgba(47, 109, 246, 0.20) !important;
+    border-color: rgba(95, 168, 255, 0.35) !important;
+    box-shadow: inset 0 0 0 1px rgba(47, 109, 246, 0.25);
+}
+
+[data-testid="stRadio"] label[data-baseweb="radio"]:has(input:checked) p {
+    color: #eaf1ff !important;
+}
+
+.stTextInput label p,
+.stNumberInput label p,
+.stSelectbox label p,
+.stSlider label p {
+    color: #c9d3e8 !important;
+    font-weight: 500;
+}
+
+.stSelectbox [data-baseweb="select"] {
+    background: var(--input) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 14px !important;
+    min-height: 48px !important;
+    box-shadow: none !important;
+}
+
+.stSelectbox [data-baseweb="select"]:hover {
+    border-color: rgba(95, 168, 255, 0.22) !important;
+}
+
+.stSelectbox [data-baseweb="select"] > div {
+    color: var(--text) !important;
+}
+
+.stSelectbox [data-baseweb="select"] svg {
+    color: #a4b3d6 !important;
+}
+
+.stTextInput [data-baseweb="input"],
+.stNumberInput [data-baseweb="input"] {
+    background: var(--input) !important;
+    border-radius: 14px !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+}
+
+.stTextInput [data-baseweb="input"]:focus-within,
+.stNumberInput [data-baseweb="input"]:focus-within {
+    border-color: rgba(95, 168, 255, 0.42) !important;
+    box-shadow: 0 0 0 3px rgba(47, 109, 246, 0.10) !important;
+}
+
+.stTextInput input,
+.stNumberInput input {
+    color: var(--text) !important;
+    background: transparent !important;
+}
+
+.stNumberInput [data-baseweb="input"] > div:last-child {
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.stNumberInput [data-baseweb="input"] > div:last-child > button {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: none !important;
+    color: var(--text) !important;
+    min-width: 54px !important;
+    box-shadow: none !important;
+}
+
+.stNumberInput [data-baseweb="input"] > div:last-child > button:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+.stNumberInput [data-baseweb="input"] > div:last-child > button:focus {
+    outline: none !important;
+    box-shadow: inset 0 0 0 1px rgba(95, 168, 255, 0.28) !important;
+}
+
+.stTextInput input::placeholder,
+.stNumberInput input::placeholder {
+    color: #7f8aa5 !important;
+}
+
+.stTextInput [data-baseweb="input"] button {
+    background: transparent !important;
+    color: #a4b3d6 !important;
+    border: none !important;
+}
+
+[data-testid="InputInstructions"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+[data-testid="stForm"] {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 0.85rem 0.95rem 0.95rem 0.95rem;
+    margin-bottom: 0.9rem;
+}
+
+[data-testid="stForm"] .stFormSubmitButton > button {
+    margin-top: 0.35rem;
+}
+
+.stButton > button {
+    width: auto;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    border-radius: 999px;
+    border: 1px solid rgba(95, 168, 255, 0.26);
+    background: linear-gradient(180deg, rgba(95, 168, 255, 0.16) 0%, rgba(47, 109, 246, 0.10) 100%);
+    color: white;
+    font-weight: 600;
+    min-height: 40px;
+    padding: 0.35rem 0.95rem;
+    box-shadow: 0 8px 20px rgba(47, 109, 246, 0.10);
+}
+
+.stButton > button:hover {
+    border-color: rgba(95, 168, 255, 0.38);
+    background: linear-gradient(180deg, rgba(95, 168, 255, 0.20) 0%, rgba(47, 109, 246, 0.14) 100%);
+    box-shadow: 0 10px 24px rgba(47, 109, 246, 0.16);
+}
+
+.stButton > button:focus {
+    box-shadow: 0 0 0 3px rgba(95, 168, 255, 0.14) !important;
+}
+
+.secondary-btn .stButton > button {
+    background: rgba(255, 255, 255, 0.03) !important;
+    color: var(--text) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: none !important;
+}
+
+.stSuccess, .stInfo, .stWarning, .stError {
+    border-radius: 14px;
+}
+
+.stCaption, .stMarkdown p {
+    color: var(--muted);
+}
+
+.left-note {
+    color: var(--muted);
+    font-size: .92rem;
+    line-height: 1.45;
+    padding: .5rem .2rem .2rem .2rem;
+}
+
+.recovery-hint {
+    color: var(--muted);
+    font-size: .9rem;
+    margin: 0.15rem 0 0.75rem 0;
+}
+
+.recovery-hint b {
+    color: #cfe0ff;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    div[data-testid="stVerticalBlock"]:has(.ui-shell-marker) > div[data-testid="stHorizontalBlock"] {
+        min-height: auto;
+        padding: 10px;
+        transform: translateY(0);
+    }
+
+    div[data-testid="stVerticalBlock"]:has(.ui-shell-marker),
+    > div[data-testid="stHorizontalBlock"],
+    > div[data-testid="column"]:first-child,
+    > div[data-testid="stVerticalBlock"],
+    div[data-testid="stVerticalBlock"]:has(.ui-shell-marker),
+    > div[data-testid="stHorizontalBlock"],
+    > div[data-testid="column"]:last-child,
+    > div[data-testid="stVerticalBlock"] {
+        min-height: auto;
+        padding: 0.9rem;
+    }
+}
+
