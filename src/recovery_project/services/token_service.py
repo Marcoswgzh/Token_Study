@@ -3,11 +3,6 @@ import secrets
 import string
 import hashlib
 
-# TODO: Check if this is unused (I think it is) and delete
-# Characters included in the token
-# We can increase this by adding string.digits (digits from 0 to 9) and/or string.punctuation (special characters)
-default_alphabet = string.ascii_letters
-
 # Writer: Anna Kálmánczhelyi
 # Reviewer: Nadja Poltoracki - i6403661
 class TokenService:
