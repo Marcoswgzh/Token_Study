@@ -1,31 +1,26 @@
 """Bruteforce attack script: parallel approach for token guessing"""
-"""Right now it is too slow, so improvements are needed"""
-
-# Writer: Marcos Wang Zhu 
-
-from multiprocessing.synchronize import Event
+# Writer: Marcos Wang Zhu
+import time
 import itertools
-
-# Splits the alphabet into chunksize chunks
-def split_string(s: str, chunksize: int) -> list:
-    chunks = []
-    for i in range(0, len(s), chunksize):
-        chunks.append(s[i:i+chunksize])
-    return chunks
 
 # Guesses the token by locking in one starting letter at a time from the assigned chunk
 # It then generates and tests every possible suffix for that specific letter
 # Once all suffixes for that letter are exhausted, it moves to the next starting letter
-def guess_parallel(token: str, alphabet_chunk: str, full_alphabet: str, suffix_length: int, found_event: Event) -> None:
+def guess_parallel(end: int, token: str, alphabet_chunk: str, full_alphabet: str, suffix_length: int, value: int, result: bytes) -> None:
+    attempts = 0
     for first_char in alphabet_chunk:
-        if found_event.is_set():
-            return
+        if result.value or time.time() > end:
+            break
         for suffix_tuple in itertools.product(full_alphabet, repeat=suffix_length):
-            if found_event.is_set():
-                return
+            if result.value or time.time() > end:
+                break
             suffix_string = "".join(suffix_tuple)
+            attempts += 1
             if first_char + suffix_string == token:
-                print(f"Token found: {token}") 
-                found_event.set()
-                return
-            
+                print(f"Token found: {token}")
+                result.value = 1
+                break
+
+    with value.get_lock():
+        value.value += attempts
+    return
