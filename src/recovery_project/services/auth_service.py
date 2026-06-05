@@ -1,4 +1,5 @@
 """ Handles User login and User data storage"""
+# Refactored by: Nadja Poltoracki - i6403661
 from __future__ import annotations
 
 from pathlib import Path
