@@ -8,7 +8,7 @@ from typing import Callable, Protocol
 from recovery_project.config import ExperimentConfig
 from recovery_project.domain.models import TrialResult
 from recovery_project.utils.logging import get_logger
-from src.recovery_project.services.token_service import TokenService as ts
+from recovery_project.services.token_service import TokenService as ts
 
 log = get_logger(__name__)
 

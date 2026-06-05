@@ -3,23 +3,23 @@
 
 import math
 import multiprocessing
+import sys
 import time
 from datetime import datetime
 
 from recovery_project.config import ExperimentConfig
 from recovery_project.domain.models import TrialResult
-from src.recovery_project.simulation.bruteforce import guess_parallel
+from recovery_project.simulation.bruteforce import guess_parallel
 
 def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialResult:
         length = configs.token_policy.length
         tp = configs.token_policy
         rlp =  configs.rate_limit_policy
-        ttl_seconds = tp.ttl_seconds
+        ttl_seconds = tp.ttl_seconds if rlp.enabled else sys.maxsize
         alphabet = tp.alphabet
         num_processes = min(multiprocessing.cpu_count(), len(alphabet))
         start = time.time()
-        with multiprocessing.Manager() as manager:
-            found_event = manager.Event()
+        with multiprocessing.Manager():
 
             print("\nBrute force check:")
 
@@ -27,26 +27,24 @@ def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialR
             chunk_size = math.ceil(len(alphabet) / num_processes)
             alphabet_chunks = split_string(alphabet, chunk_size)
 
-            result_queue = multiprocessing.Queue()
+            result = multiprocessing.Value('b', 0)
+            multi_value = multiprocessing.Value('i', 0)
             processes = []
             suffix_length = length - 1
 
             for chunk in alphabet_chunks:
-                process = multiprocessing.Process(target=guess_parallel, args=(ttl_seconds + time.time(), target, chunk, alphabet, suffix_length, found_event,result_queue))
+                process = multiprocessing.Process(target=guess_parallel, args=(ttl_seconds + time.time(), target, chunk, alphabet, suffix_length, multi_value, result))
                 processes.append(process)
                 process.start()
-
-            for process in processes:
-                process.join()
 
             total_attempts = 0
             success = False
             for _ in processes:
-                attempts, found = result_queue.get()
-                total_attempts += attempts
+                total_attempts = multi_value.value
+                success = bool(result.value)
 
-                if found:
-                    success = True
+                for process in processes:
+                    process.join()
 
         end = time.time()
 
@@ -61,7 +59,7 @@ def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialR
             rate_limit_window_seconds=rlp.window_seconds,
             success=success,
             attempts_made=total_attempts,
-            attempts_blocked= total_attempts - 1 if not success else total_attempts,
+            attempts_blocked= total_attempts - 1 if success else total_attempts,
             time_elapsed_ms=round((end - start) * 1000, 4),
             token_expired=not success,
             timestamp=datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))

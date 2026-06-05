@@ -53,10 +53,3 @@ def load_experiment_config(file_name: str ) -> list[ExperimentConfig]:
             rate_limit_policy=rate_limit_policy,
         ))
     return configs
-
-
-def main () -> None:
-    print(load_experiment_config("rq1_entropy.json"))
-
-if __name__ == "__main__":
-   main()

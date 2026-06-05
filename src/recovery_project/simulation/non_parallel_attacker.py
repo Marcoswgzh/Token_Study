@@ -13,13 +13,10 @@ from datetime import datetime
 from recovery_project.config import ExperimentConfig
 from recovery_project.domain.models import TrialResult
 
-
 # Exhaustive and random bruteforce attacks on one specific user. Returns a dictionary with different metrics
 # We are not using parallel guessing algorithms, since it would require making the rate limiter parallel to avoid race conditions
 # So we will use simpler sequential algorithms
 # We will see in the results that this change will not affect much, since the rate limiter will block the attacker anyway
-
-#TODO add option to choose parallel vs non in gui
 
 def non_parallel_attacker(trial_id : int, target_token: str, configs: ExperimentConfig) -> TrialResult:
     # initialize values
@@ -27,13 +24,15 @@ def non_parallel_attacker(trial_id : int, target_token: str, configs: Experiment
     rlp = configs.rate_limit_policy
     alphabet = tp.alphabet
     token_length = tp.length
-    limit = rlp.max_attempts > 0 | sys.maxsize
-    strategy =configs.strategy if configs.strategy in ("random", "exhaustive") else "random"
-    ttl_seconds = tp.ttl_seconds > 0 | sys.maxsize
+    limit = rlp.max_attempts if rlp.enabled else sys.maxsize
+    strategy = configs.strategy if configs.strategy in ("random", "exhaustive") else "random"
+    ttl_seconds =  tp.ttl_seconds if tp.ttl_seconds > 0 else sys.maxsize
 
     attempts = 0
     start = time.time()
     success = False
+    print("running trial:",end= " ")
+    print(trial_id)
 
     # Random guessing
     if strategy == "random":
@@ -48,6 +47,8 @@ def non_parallel_attacker(trial_id : int, target_token: str, configs: Experiment
 
             if guess_str == target_token:
                 success = True
+                print("token found")
+                print(guess_str)
                 break
 
     # Exhaustive guessing
@@ -62,6 +63,8 @@ def non_parallel_attacker(trial_id : int, target_token: str, configs: Experiment
 
             if guess_str == target_token :
                 success = True
+                print("token found")
+                print(guess_str)
                 break
 
     end = time.time()
@@ -77,7 +80,7 @@ def non_parallel_attacker(trial_id : int, target_token: str, configs: Experiment
         rate_limit_window_seconds=rlp.window_seconds,
         success=success,
         attempts_made=attempts,
-        attempts_blocked=attempts - 1 if not success else attempts,
+        attempts_blocked=attempts - 1 if success else attempts,
         time_elapsed_ms=round((end - start) * 1000, 4),
         token_expired=not success,
         timestamp=datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))
