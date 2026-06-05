@@ -6,7 +6,7 @@ from recovery_project.domain.models import TrialResult
 from recovery_project.experiments.helpers.metrics import compute_summary,save_results
 from recovery_project.experiments.helpers.runner import ExperimentRunner
 from recovery_project.config import load_experiment_config
-from recovery_project.simulation.non_parallel_attacker import non_parallel_attacker
+from recovery_project.simulation.non_parallel_attacker import send_attack
 from recovery_project.simulation.parallel_attacker import send_attack
 
 def exp_setup(experiment_name: str,load_exp_path: str):
@@ -18,7 +18,7 @@ def exp_setup(experiment_name: str,load_exp_path: str):
     for config in data:
         print(config.strategy)
         if config.strategy == "random" or config.strategy == "exhaustive":
-            attacker = non_parallel_attacker
+            attacker = send_attack
             config.name = config.name + "_non_parallel"
         else:
             attacker = send_attack

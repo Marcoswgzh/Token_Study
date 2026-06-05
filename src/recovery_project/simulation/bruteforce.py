@@ -6,7 +6,8 @@ import itertools
 # Guesses the token by locking in one starting letter at a time from the assigned chunk
 # It then generates and tests every possible suffix for that specific letter
 # Once all suffixes for that letter are exhausted, it moves to the next starting letter
-def guess_parallel(end: int, token: str, alphabet_chunk: str, full_alphabet: str, suffix_length: int, value: int, result: bytes) -> None:
+def guess_parallel(end: int, token: str, alphabet_chunk: str, full_alphabet: str, suffix_length: int, value: int, result: bytes,found_token_buf=None) -> None:
+    global token_found
     attempts = 0
     for first_char in alphabet_chunk:
         if result.value or time.time() > end:
@@ -18,6 +19,7 @@ def guess_parallel(end: int, token: str, alphabet_chunk: str, full_alphabet: str
             attempts += 1
             if first_char + suffix_string == token:
                 print(f"Token found: {token}")
+                found_token_buf.value = (first_char + suffix_string).encode()
                 result.value = 1
                 break
 

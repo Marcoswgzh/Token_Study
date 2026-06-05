@@ -12,6 +12,7 @@ from recovery_project.domain.models import TrialResult
 from recovery_project.simulation.bruteforce import guess_parallel
 
 def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialResult:
+        global found_token
         length = configs.token_policy.length
         tp = configs.token_policy
         rlp =  configs.rate_limit_policy
@@ -29,11 +30,12 @@ def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialR
 
             result = multiprocessing.Value('b', 0)
             multi_value = multiprocessing.Value('i', 0)
+            found_token_buf = multiprocessing.Array('c', 256)
             processes = []
             suffix_length = length - 1
 
             for chunk in alphabet_chunks:
-                process = multiprocessing.Process(target=guess_parallel, args=(ttl_seconds + time.time(), target, chunk, alphabet, suffix_length, multi_value, result))
+                process = multiprocessing.Process(target=guess_parallel, args=(ttl_seconds + time.time(), target, chunk, alphabet, suffix_length, multi_value, result,found_token_buf))
                 processes.append(process)
                 process.start()
 
@@ -42,10 +44,10 @@ def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialR
             for _ in processes:
                 total_attempts = multi_value.value
                 success = bool(result.value)
+                found_token = found_token_buf.value.decode() if success else ""
 
                 for process in processes:
                     process.join()
-
         end = time.time()
 
         return TrialResult(
@@ -70,3 +72,8 @@ def split_string(s: str, chunksize: int) -> list:
     for i in range(0, len(s), chunksize):
         chunks.append(s[i:i+chunksize])
     return chunks
+
+found_token = ""
+
+def get_token()->str:
+    return found_token

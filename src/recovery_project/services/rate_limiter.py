@@ -83,6 +83,11 @@ class RateLimiter:
 validation_limiter = RateLimiter(max_attempts=5, window_seconds=60)
 request_limiter = RateLimiter(max_attempts=3, window_seconds=60)
 
+def get_validation_limiter():
+    return validation_limiter
+
+def get_request_limiter():
+    return request_limiter
 
 # Sofya Grishkova - i6397764
 def configure_validation_limit(max_attempts: int, window_seconds: int) -> None:

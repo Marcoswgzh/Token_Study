@@ -1,8 +1,11 @@
 # Writer: Marcos Wang Zhu
 
 import multiprocessing
+import time
 
-from recovery_project.simulation.bruteforce import split_string, guess_parallel
+from recovery_project.simulation.bruteforce import guess_parallel
+from recovery_project.simulation.parallel_attacker import split_string
+
 
 def test_split_string():
     """Tests if the alphabet chunking math works correctly."""
@@ -18,30 +21,40 @@ def test_split_string():
 
 def test_guess_parallel_success():
     """Tests if the worker can actually find a known token."""
-    found_event = multiprocessing.Event()
-    
+    result = multiprocessing.Value('b', 0)
+    value = multiprocessing.Value('i', 0)
+    token = multiprocessing.Array('c', 256)
+
     guess_parallel(
+        end=int(time.time() + 30000),
         token="cat", 
         alphabet_chunk="c", 
         full_alphabet="abcdefghijklmnopqrstuvwxyz", 
         suffix_length=2, 
-        found_event=found_event
+        result=result,
+        value=value,
+        found_token_buf=token
     )
     
     # If it worked, the event flag should be flipped to True
-    assert found_event.is_set() is True
+    assert result.value == 1
 
 def test_guess_parallel_failure():
     """Tests if the worker correctly ignores impossible tokens."""
-    found_event = multiprocessing.Event()
-    
+    result = multiprocessing.Value('b', 0)
+    value = multiprocessing.Value('i', 0)
+    token = multiprocessing.Array('c', 256)
+
     guess_parallel(
+        end = int(time.time() + 30000),
         token="zz", 
         alphabet_chunk="ab", 
         full_alphabet="ab", 
         suffix_length=1, 
-        found_event=found_event
+        result=result,
+        value = value,
+        found_token_buf = token
     )
     
     # Because 'zz' was never found, the event flag should remain False
-    assert found_event.is_set() is False
+    assert result.value == 0
