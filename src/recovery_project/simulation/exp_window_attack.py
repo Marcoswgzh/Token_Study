@@ -11,6 +11,7 @@ from typing import Any
 from ..services.token_service import TokenService
 
 # Main writer: Anna Kálmánczhelyi
+# Reviewer: Timea Vojcikova
 class ExpirationWindowAttacker():
     """Parallel brute force script where we try to guess randomly the token. It's not exhaustive, so we just try random combinations. 
     To generate tokens, we use the TokenService.
@@ -22,6 +23,7 @@ class ExpirationWindowAttacker():
     "python -m src.recovery_project.simulation.exp_window_attack"
     """
     # Main writer: Anna Kálmánczhelyi
+    # Reviewer: Timea Vojcikova
     def attack(self, 
                token_hash:str,
                alphabet: str,
@@ -94,6 +96,7 @@ class ExpirationWindowAttacker():
         }
 
     # Main writer Anna Kálmánczhelyi 
+    # Reviewer: Timea Vojcikova
     @staticmethod
     def _rate_bounded_attack(
         token_hash: str,
@@ -155,6 +158,7 @@ class ExpirationWindowAttacker():
 
         
     # Main writer: Anna Kálmánczhelyi
+    # Reviewer: Timea Vojcikova
     @staticmethod
     def _worker_loop(worker_id: int, 
                      token_hash:str,
@@ -197,6 +201,7 @@ class ExpirationWindowAttacker():
                 attempts_counter.value += 1
 
 # Main writer: Anna Kálmánczhelyi
+# Reviewer: Timea Vojcikova
 if __name__ == "__main__":
     """This is for testing purposes. The commented out lines are there for initial testing: smaller alphabet and token length because the brute force has a tendency to run out of time on bigger alphabets and longer token lengths before finding a good token."""
 
