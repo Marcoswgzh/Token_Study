@@ -2,12 +2,11 @@
   "name": "rq3_test1_ex",
   "trials": 100,
   "strategy": "exhaustive",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 2,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -20,12 +19,11 @@
   "name": "rq3_test2_ex",
   "trials": 100,
   "strategy": "exhaustive",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 4,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -38,12 +36,11 @@
   "name": "rq3_test3_ex",
   "trials": 100,
   "strategy": "exhaustive",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 6,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -56,12 +53,11 @@
   "name": "rq3_test4_ex",
   "trials": 100,
   "strategy": "exhaustive",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 2,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -74,12 +70,11 @@
   "name": "rq3_test5_ex",
   "trials": 100,
   "strategy": "exhaustive",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 4,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -92,12 +87,11 @@
   "name": "rq3_test6_ex",
   "trials": 100,
   "strategy": "exhaustive",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 6,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -110,12 +104,11 @@
   "name": "rq3_test7_ex",
   "trials": 100,
   "strategy": "exhaustive",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 2,
     "alphabet": "0123456789ABCDEF",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -128,12 +121,11 @@
   "name": "rq3_test8_ex",
   "trials": 100,
   "strategy": "exhaustive",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 4,
     "alphabet": "0123456789ABCDEF",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -146,12 +138,11 @@
   "name": "rq3_test9_ex",
   "trials": 100,
   "strategy": "exhaustive",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 6,
     "alphabet": "0123456789ABCDEF",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -164,30 +155,28 @@
   "name": "rq3_test10_ex",
   "trials": 100,
   "strategy": "exhaustive",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 6,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
     "enabled": true,
-    "max_attempts": 5, 
+    "max_attempts": 5,
     "window_seconds": 60
-  }                                 
+  }
 },
 {
   "name": "rq3_test1_ran",
   "trials": 100,
   "strategy": "random",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 2,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -200,12 +189,11 @@
   "name": "rq3_test2_ran",
   "trials": 100,
   "strategy": "random",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 4,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -218,12 +206,11 @@
   "name": "rq3_test3_ran",
   "trials": 100,
   "strategy": "random",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 6,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -236,12 +223,11 @@
   "name": "rq3_test4_ran",
   "trials": 100,
   "strategy": "random",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 2,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -254,12 +240,11 @@
   "name": "rq3_test5_ran",
   "trials": 100,
   "strategy": "random",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 4,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -272,12 +257,11 @@
   "name": "rq3_test6_ran",
   "trials": 100,
   "strategy": "random",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 6,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -290,12 +274,11 @@
   "name": "rq3_test7_ran",
   "trials": 100,
   "strategy": "random",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 2,
     "alphabet": "0123456789ABCDEF",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -308,12 +291,11 @@
   "name": "rq3_test8_ran",
   "trials": 100,
   "strategy": "random",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 4,
     "alphabet": "0123456789ABCDEF",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -326,12 +308,11 @@
   "name": "rq3_test9_ran",
   "trials": 100,
   "strategy": "random",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 6,
     "alphabet": "0123456789ABCDEF",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
@@ -344,18 +325,17 @@
   "name": "rq3_test10_ran",
   "trials": 100,
   "strategy": "random",
-  "attack_attempt_budget": 999999,
-  "attack_rate_per_second": 999999,
+ "attack_rate_per_second": -1,
   "token_policy": {
     "length": 6,
     "alphabet": "0123456789",
-    "ttl_seconds": 300,
+    "ttl_seconds": -1,
     "single_use": true
   },
   "rate_limit_policy":{
     "enabled": true,
-    "max_attempts": 5, 
+    "max_attempts": 5,
     "window_seconds": 60
-  }                                 
+  }
 }
 ]

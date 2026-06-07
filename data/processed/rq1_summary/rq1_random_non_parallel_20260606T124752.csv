@@ -1,0 +1,13 @@
+trial_name,total_trials,success_count,success_rate,mean_attempts,median_attempts,mean_attempts_to_success,median_attempts_to_success,mean_time_elapsed_ms,median_time_elapsed_ms,total_blocked,mean_blocked_per_trial,token_expired_count
+rq1_test1_len2_hexadecimal_random_non_parallel,100,100,1.0,247.41,193.5,247.41,193.5,0.12,0.0,24641,246.41,0
+rq1_test2_len4_hexadecimal_random_non_parallel,100,100,1.0,65906.05,50112.5,65906.05,50112.5,40.04,31.66,6590505,65905.05,0
+rq1_test3_len5_hexadecimal_random_non_parallel,100,100,1.0,1308803.78,840475.0,1308803.78,840475.0,1092.71,704.86,130880278,1308802.78,0
+rq1_test4_len6_hexadecimal_random_non_parallel,50,50,1.0,16650907.98,14765099.0,16650907.98,14765099.0,11365.65,9593.19,832545349,16650906.98,0
+rq1_test5_len7_hexadecimal_random_non_parallel,10,10,1.0,319813586.7,269270249.0,319813586.7,269270249.0,242310.28,200693.18,3198135857,319813585.7,0
+rq1_test6_len8_hexadecimal_random_non_parallel,2,2,1.0,5862214612,5862214612.0,5862214612,5862214612.0,4863000.83,4863000.83,11724429222,5862214611,0
+rq1_test1__len2_decaddecimal_random_non_parallel,100,100,1.0,101.9,84.0,101.9,84.0,0.06,0.0,10090,100.9,0
+rq1_test2__len4_decaddecimal_random_non_parallel,100,100,1.0,10316.45,5840.0,10316.45,5840.0,6.72,4.0,1031545,10315.45,0
+rq1_test3__len5_decaddecimal_random_non_parallel,100,100,1.0,96791.26,76947.0,96791.26,76947.0,65.59,49.13,9679026,96790.26,0
+rq1_test4_len_6_decadecimal_random_non_parallel,50,50,1.0,907254.06,495806.5,907254.06,495806.5,631.26,341.56,45362653,907253.06,0
+rq1_test5__len7_decadecimal_random_non_parallel,10,10,1.0,11844885.8,3994457.5,11844885.8,3994457.5,9251.43,3158.09,118448848,11844884.8,0
+rq1_test6_len_8_decadecimal_random_non_parallel,2,2,1.0,45876958.5,45876958.5,45876958.5,45876958.5,38204.06,38204.06,91753915,45876957.5,0

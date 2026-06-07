@@ -39,8 +39,6 @@ def load_experiment_config(file_name: str ) -> list[ExperimentConfig]:
 
     configs = []
 
-#todo fix .json files: include strategy (rq2 = NONE), attack_rate_per_seconds(rq2 = -1), in token_policy ttl(rq3 = -1), in rate_limit_policy everything(rq2 = everything -1)
-#TODO delete attack_attempt_budget from rq2 and 3 .jsons
     for experiment in raw:
         token_policy = TokenPolicy(**experiment["token_policy"])
         rate_limit_policy = RateLimitPolicy(**experiment["rate_limit_policy"])

@@ -1,6 +1,5 @@
 #refactored by Erika Skodova
 #writer Sofya Grishkova (i6397764)
-
 import streamlit as st
 
 from Fragment_handler import _fragment_rerun
@@ -10,8 +9,9 @@ from recovery_project.services.email_verifier import email_verifier
 from recovery_project.services.auth_service import user_exists
 from recovery_project.services.recovery_service import issue_token, reset_password, validate_token
 from recovery_project.services.rate_limiter import is_locked, get_remaining_lockout_time
+from recovery_project.ui.recovery_buttons import _render_back_button, _add_break_button
 
-#TODO seem like a clutter look through if sth else is needed to split
+
 def _recover_tab() -> None:
     step = int(st.session_state.recovery_step)
     if step > 1 and not st.session_state.issued_token:
@@ -22,14 +22,6 @@ def _recover_tab() -> None:
         step = 2
 
     st.markdown('<div class="headline">Recovery</div>', unsafe_allow_html=True)
-
-    def _render_back_button(current_step: int) -> None:
-        st.markdown('<div style="height:.35rem"></div>', unsafe_allow_html=True)
-        if st.button("←", key=f"recover_back_{current_step}"):
-            if current_step == 3:
-                st.session_state.token_verified = False
-            _go_to_recovery_step(current_step - 1)
-            _fragment_rerun()
 
     if step == 1:
         with st.form("recover_request", enter_to_submit=False):
@@ -68,7 +60,7 @@ def _recover_tab() -> None:
 
     if step == 2:
         with st.form("recover_verify", enter_to_submit=False):
-            guessed = st.text_input("Enter recovery token", placeholder="e.g. 1A2B3C")
+            guessed = st.text_input("Enter recovery token", placeholder="e.g. 1A2B3C", value=st.session_state.get('token_input', ''))
             verify_submitted = st.form_submit_button("Verify token")
         st.success(f"Demo token issued for {st.session_state.reset_email}. Sent to terminal.")
         if verify_submitted:
@@ -87,6 +79,7 @@ def _recover_tab() -> None:
                 st.error("Invalid token.")
 
         _render_back_button(2)
+        _add_break_button()
         return
 
     with st.form("recover_reset", enter_to_submit=False):

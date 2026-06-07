@@ -27,7 +27,7 @@ def _strip_lottie_background(animation: dict) -> dict:
 def _load_lottie() -> dict | None:
     candidates = [
         Path("cute_robot.json"),
-        Path("assets/animations/cute_robot.json"),
+        Path(Path(__file__).parent / "cute_robot.json")
     ]
     for path in candidates:
         if path.exists():

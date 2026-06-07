@@ -8,17 +8,15 @@ Core responsibilities:
 from __future__ import annotations
 
 # Writer: Anna Kálmánczhelyi
-import hashlib
 from datetime import datetime, timedelta
 
-from rate_limiter import request_limiter, validation_limiter
-from token_service import TokenService
-from auth_service import update_password
-from ..repositories.token_repository import TokenRepository
+from recovery_project.services.token_service import TokenService, validate_token, get_token_repo
+from recovery_project.services.rate_limiter import get_request_limiter, get_validation_limiter
+from recovery_project.services.auth_service import update_password
 
-service = TokenService()
-token_repository = TokenRepository()
-
+request_limiter = get_request_limiter()
+validation_limiter = get_validation_limiter()
+token_service = TokenService()
 # Writer: Anna Kálmánczhelyi
 # Reviwer: Sofya Grishkova - i6397764
 def issue_token(email: str) -> str | None:
@@ -26,15 +24,13 @@ def issue_token(email: str) -> str | None:
     if request_limiter.is_locked(email):
         return None
 
-    token, token_hash = service.generate_token()
+    token, token_hash = token_service.generate_token()
 
     created_at = datetime.now()
-
-    #TODO: this doesn't connect to the ui yet, the seconds are hardcoded, so if the user changes them on the interface, it won't have an effect
-    expires_at = datetime.now() + timedelta(seconds=300)
+    expires_at = created_at + timedelta(seconds=300)
 
     # The demo backend binds recovery tokens directly to the account email.
-    token_repository.store_token(token_hash, email, created_at, expires_at)
+    get_token_repo().store_token(token_hash, email, created_at, expires_at)
 
     # count token requests too, because requesting many reset emails is also abuse
     request_limiter.record_failure(email)
@@ -45,42 +41,7 @@ def issue_token(email: str) -> str | None:
     return token
 
 # Writer: Anna Kálmánczhelyi
-# Reviewer: Sofya Grishkova - i6397764
-def validate_token(email: str, provided_token: str) -> bool:
-    # if the account is locked, even a correct token should not work yet
-    if validation_limiter.is_locked(email):
-        return False
-
-    provided_hash = hashlib.sha256(provided_token.encode()).hexdigest()
-    record = token_repository.find_token(provided_hash)
-
-    # unknown token is a failed guess
-    if not record:
-        validation_limiter.record_failure(email)
-        return False
-
-    # token must belong to the same account that is trying to recover
-    if record.user_id != email:
-        validation_limiter.record_failure(email)
-        return False
-
-    # used tokens should not be accepted again
-    if record.used:
-        validation_limiter.record_failure(email)
-        return False
-
-    # expired token also counts as a failed validation attempt
-    if datetime.now() > record.expires_at:
-        validation_limiter.record_failure(email)
-        return False
-
-    # token is correct, so mark it as used and clear previous failures
-    token_repository.mark_token_used(provided_hash)
-    validation_limiter.record_success(email)
-    return True
-
-# Writer: Anna Kálmánczhelyi
-# Reviewer: Sofya Grishkova - i6397764
+# Sofya Grishkova - i6397764
 def reset_password(email: str, new_password: str) -> bool:
     return update_password(email, new_password)
 

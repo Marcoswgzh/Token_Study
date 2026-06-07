@@ -38,8 +38,6 @@ def _init_state() -> None:
             st.session_state[key] = value
 
 
-#TODO handle changing tabs here
-
 # Sofya Grishkova (i6397764)
 def main() -> None:
     st.set_page_config(
