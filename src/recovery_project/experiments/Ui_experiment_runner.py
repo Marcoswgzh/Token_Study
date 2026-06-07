@@ -5,7 +5,7 @@ from recovery_project.experiments.helpers.runner import ExperimentRunner
 from recovery_project.attacker_algorithms.non_parallel_attacker import send_attack
 from recovery_project.attacker_algorithms.parallel_attacker import send_attack
 
-
+# Initializing class for user demo experiments from GUI
 def demo_run(demo_config: ExperimentConfig) -> dict:
     if demo_config.strategy is "random" or demo_config.strategy is "exhaustive":
         print(demo_config.strategy)

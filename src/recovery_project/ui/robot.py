@@ -5,6 +5,8 @@ from pathlib import Path
 import json
 import streamlit as st
 
+# GUI robot animation
+
 def _strip_lottie_background(animation: dict) -> dict:
     """Remove static pale background layers from the current robot Lottie."""
     layers = animation.get("layers")

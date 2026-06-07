@@ -8,10 +8,11 @@ import streamlit as st
 from recovery_project.config import TokenPolicy, RateLimitPolicy, ExperimentConfig
 from recovery_project.experiments.Ui_experiment_runner import demo_run
 
-
+# Module Hnadling Experiments tab in GUI, connecting all other modules related to this tab
 def _experiments_tab() -> None:
     st.markdown('<div class="headline">Experiments</div>', unsafe_allow_html=True)
 
+    # User controllable configurations for experiments
     col_a, col_b = st.columns(2)
     with col_a:
         token_length = st.slider("Token length", 2, 12, 6)
@@ -38,12 +39,14 @@ def _experiments_tab() -> None:
     run_col, warning_col = st.columns([0.42, 0.58])
     run_clicked = run_col.button("Run demo experiment")
 
+    # Warnings about experiments based on the parameters picked
     ttl_too_short = rl_enabled and ttl < rl_window
     token_too_long = token_length > 7 and not rl_enabled
     ttl_bruteforce = algorithm == "parallel"
     algorithm_set = algorithm == "parallel" and rl_enabled
     trail_count = attack_budget < 50
 
+    # Remove warnings after the experiment ran but return it if parameters were changed
     current_config = (token_length, ttl, attack_budget, alphabet, algorithm, rl_enabled, rl_max, rl_window)
 
     if st.session_state.get('last_config') != current_config:
@@ -67,6 +70,7 @@ def _experiments_tab() -> None:
                 warning_col.warning("Algorithm is set to be parallelized bruteforce, token expire time is only considered if rate limiting is enabled")
 
 
+    # Running the experiment
     if run_clicked:
         with st.spinner("Running demo experiments, please wait..."):
             time.sleep(0.1)
@@ -83,6 +87,8 @@ def _experiments_tab() -> None:
                                                     max_attempts = rl_max,
                                                     window_seconds=rl_window))
             results = demo_run(configs)
+
+        # Some results from the experiment
         m1, m2, m3 = st.columns(3)
         m1.markdown(
             f'<div class="metric-chip"><strong>{results["success_rate"]*100:.6f}</strong><span>Estimated takeover probability in %</span></div>',

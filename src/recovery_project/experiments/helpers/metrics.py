@@ -18,7 +18,7 @@ _FIELD_NAMES = [f.name for f in fields(TrialResult)]
 
 
 def save_results(results: list[TrialResult] or dict, output_dir: Path | str) -> Path:
-    """Write trial results to a timestamped CSV and return its path."""
+    # Write trial results to a timestamped CSV and return its path.
     base_dir = Path(__file__).resolve().parent.parent.parent.parent
     output_dir = Path(base_dir / "data" /  output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -27,14 +27,17 @@ def save_results(results: list[TrialResult] or dict, output_dir: Path | str) -> 
         log.warning("No results to save")
         return output_dir
 
+    # Get the correct name (trial or summary?)
     if isinstance(results[0], TrialResult):
         experiment_name = results[0].experiment_name
     else:
         experiment_name = results[0].get("trial_name")
+
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
     filename = f"{experiment_name}_{ts}.csv"
     path = output_dir / filename
 
+    # Save into file
     with open(path, "w", newline="") as fh:
         if isinstance(results[0], TrialResult):
             writer = csv.DictWriter(fh, fieldnames=_FIELD_NAMES)
@@ -53,7 +56,8 @@ def save_results(results: list[TrialResult] or dict, output_dir: Path | str) -> 
 
 
 def compute_summary(results: list[TrialResult], trial_name: str) -> dict:
-    """Compute aggregate statistics and print them to the console."""
+    # Compute aggregate statistics and print them to the console.
+
     if not results:
         return {}
 
@@ -87,7 +91,7 @@ def compute_summary(results: list[TrialResult], trial_name: str) -> dict:
     _print_summary(summary)
     return summary
 
-
+# Terminal view results
 def _print_summary(summary: dict) -> None:
     width = 38
     print("\n" + "=" * width)

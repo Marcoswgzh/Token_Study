@@ -12,6 +12,7 @@ from recovery_project.domain.models import TrialResult
 from recovery_project.attacker_algorithms.bruteforce import guess_parallel
 
 def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialResult:
+        # Initialize variables
         global found_token
         length = configs.token_policy.length
         tp = configs.token_policy
@@ -23,24 +24,23 @@ def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialR
         with multiprocessing.Manager():
 
             print("\nBrute force check:")
-
+            # Split alphabet into chunks for faster checking
             print(f"Trying all combinations of length {length}")
             chunk_size = math.ceil(len(alphabet) / num_processes)
             alphabet_chunks = split_string(alphabet, chunk_size)
 
+            # Initialize variables used in parallel processes
             result = multiprocessing.Value('b', 0)
             multi_value = multiprocessing.Value('i', 0)
             found_token_buf = multiprocessing.Array('c', 256)
             processes = []
             suffix_length = length - 1
 
+            # Run parallel bruteforce
             for chunk in alphabet_chunks:
                 process = multiprocessing.Process(target=guess_parallel, args=(ttl_seconds + time.time(), target, chunk, alphabet, suffix_length, multi_value, result,found_token_buf))
                 processes.append(process)
                 process.start()
-
-            total_attempts = 0
-            success = False
 
             for process in processes:
                 process.join()

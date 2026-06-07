@@ -5,6 +5,7 @@ from User_details_helper import user_details_panel
 from recovery_project.services.email_verifier import email_verifier
 from recovery_project.services.auth_service import register_user
 
+# Main module handling register tab
 def _register_tab() -> None:
     st.markdown('<div class="headline">Register</div>', unsafe_allow_html=True)
 

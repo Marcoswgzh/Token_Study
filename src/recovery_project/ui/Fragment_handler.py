@@ -1,6 +1,7 @@
 #refactored by Erika Skodova
 #writer Sofya Grishkova (i6397764)
 
+#Helper class for GUI
 import streamlit as st
 
 def _fragment_passthrough(func):

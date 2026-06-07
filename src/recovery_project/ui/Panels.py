@@ -11,6 +11,8 @@ from Recovery_tab import _recover_tab
 from Register_tab import _register_tab
 from robot import _load_lottie
 
+# Main panel settings for all tabs in GUI
+
 @fragment
 def _render_left_panel() -> None:
     lottie = _load_lottie()

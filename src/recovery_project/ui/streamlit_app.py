@@ -8,12 +8,12 @@ import streamlit as st
 
 import Panels
 
-# These few lines are needed so that importing from other packages work
 root_route = str(Path(__file__).resolve().parents[3])
 
 if root_route not in sys.path:
     sys.path.append(root_route)
 
+# Main module handling connecting the whole GUI together
 
 # Sofya Grishkova (i6397764)
 def _inject_styles() -> None:

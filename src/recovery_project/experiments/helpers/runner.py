@@ -18,7 +18,7 @@ class TrialRunner(Protocol):
 
     def __call__(self, trial_id: int, config: ExperimentConfig) -> dict: ...
 
-
+# Helper class for connecting to correct attacker and running correctly trials
 class ExperimentRunner:
     def __init__(self,config: ExperimentConfig,run_trial: Callable[[int, str, ExperimentConfig], TrialResult],) -> None:
         self.config = config
@@ -33,6 +33,7 @@ class ExperimentRunner:
         )
         service = ts(self.config.token_policy.alphabet, self.config.token_policy.length)
 
+        # Run all the trial we assigned
         for trial_id in range(1, total + 1):
             target, _ = service.generate_token() #only stores token, not hash
             result = self.run_trial(trial_id, target, self.config)

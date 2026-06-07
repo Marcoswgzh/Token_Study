@@ -5,6 +5,7 @@ from pathlib import Path
 
 import json
 
+## Structured data classes used throughout the project for experiment configurations
 #written by Sofya Grishkova
 @dataclass(slots=True)
 class TokenPolicy:

@@ -4,6 +4,8 @@
 import streamlit as st
 from html import escape
 
+# Recovery tab helper
+
 def _go_to_recovery_step(step: int) -> None:
     st.session_state.recovery_step = max(1, min(step, 3))
 

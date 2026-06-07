@@ -38,6 +38,7 @@ def _write_users(users: dict[str, str]) -> None:
 
 
 # Main writer: Sofya Grishkova - i6397764
+# Email check to find user
 def user_exists(email: str) -> bool:
     return email in _read_users()
 

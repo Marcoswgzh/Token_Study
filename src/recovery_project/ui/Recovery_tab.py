@@ -11,6 +11,7 @@ from recovery_project.services.recovery_service import issue_token, reset_passwo
 from recovery_project.services.rate_limiter import is_locked, get_remaining_lockout_time
 from recovery_project.ui.recovery_buttons import _render_back_button, _add_break_button
 
+# Main module handling connecting everything related to recovery tab and it's behaviour
 
 def _recover_tab() -> None:
     step = int(st.session_state.recovery_step)
@@ -22,6 +23,8 @@ def _recover_tab() -> None:
         step = 2
 
     st.markdown('<div class="headline">Recovery</div>', unsafe_allow_html=True)
+
+    # Submitting email step
 
     if step == 1:
         with st.form("recover_request", enter_to_submit=False):
@@ -58,6 +61,7 @@ def _recover_tab() -> None:
                 st.error("Enter email first.")
         return
 
+    # Waiting for correct token input step
     if step == 2:
         with st.form("recover_verify", enter_to_submit=False):
             guessed = st.text_input("Enter recovery token", placeholder="e.g. 1A2B3C", value=st.session_state.get('token_input', ''))
@@ -82,6 +86,7 @@ def _recover_tab() -> None:
         _add_break_button()
         return
 
+    # Resetting password step
     with st.form("recover_reset", enter_to_submit=False):
         new_password = st.text_input("New password", type="password", placeholder="New password")
         confirm_password = st.text_input(

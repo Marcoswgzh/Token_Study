@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-
+# Structured data classes used throughout the project
 @dataclass(slots=True)
 class User:
     user_id: str

@@ -9,12 +9,15 @@ from recovery_project.config import load_experiment_config
 from recovery_project.attacker_algorithms import non_parallel_attacker
 from recovery_project.attacker_algorithms import parallel_attacker
 
+# Helper class connecting all experiment callers to the correct attacker and result handling
 def exp_setup(experiment_name: str,load_exp_path: str):
     data = load_experiment_config(load_exp_path)
     base_dir = Path(__file__).resolve().parent.parent.parent.parent.parent
 
     all_experiments: list[TrialResult] = []
     all_summaries: list[dict] = []
+
+    # Pick correct attacker
     for config in data:
         if config.strategy == "random" or config.strategy == "exhaustive":
             attacker = non_parallel_attacker.send_attack
@@ -22,10 +25,11 @@ def exp_setup(experiment_name: str,load_exp_path: str):
         else:
             attacker = parallel_attacker.send_attack
             config.name = config.name + "_parallel"
-        # Call bruteforce attack
+        # Call attack
         runner = ExperimentRunner(config=config, run_trial=attacker)
         results = runner.run()
 
+        # Compile results and compute summaries and export both
         all_experiments += results
         all_summaries.append(compute_summary(results, config.name))
     save_results(all_summaries,output_dir=Path(f"{base_dir}/data/processed/{experiment_name}_summary"))

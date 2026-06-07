@@ -9,6 +9,7 @@ from recovery_project.attacker_algorithms.parallel_attacker import send_attack, 
 from recovery_project.ui.Fragment_handler import _fragment_rerun
 from recovery_project.ui.Recovery_helper import _go_to_recovery_step
 
+# Buttons for Recovery tab
 #written by Sofya Grishkova (i6397764)
 def _render_back_button(current_step: int) -> None:
     st.markdown('<div style="height:.35rem"></div>', unsafe_allow_html=True)

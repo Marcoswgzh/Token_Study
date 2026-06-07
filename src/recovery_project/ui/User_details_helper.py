@@ -3,6 +3,7 @@
 
 import streamlit as st
 
+# Panel for registering and signin tab
 def user_details_panel(form_name: str, button_name: str) -> dict:
     with st.form(form_name, clear_on_submit=False, enter_to_submit=False):
         email = st.text_input("Email", placeholder="Enter your email")

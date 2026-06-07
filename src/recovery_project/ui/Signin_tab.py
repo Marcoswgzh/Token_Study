@@ -7,6 +7,7 @@ from recovery_project.services.email_verifier import email_verifier
 from recovery_project.services.auth_service import login_user
 from User_details_helper import user_details_panel
 
+# Main modul handling signing in tab
 def _sign_in_tab() -> None:
     st.markdown('<div class="headline">Sign in</div>', unsafe_allow_html=True)
     st.markdown(
