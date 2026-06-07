@@ -9,7 +9,7 @@ from datetime import datetime
 
 from recovery_project.config import ExperimentConfig
 from recovery_project.domain.models import TrialResult
-from recovery_project.simulation.bruteforce import guess_parallel
+from recovery_project.attacker_algorithms.bruteforce import guess_parallel
 
 def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialResult:
         global found_token
@@ -41,13 +41,13 @@ def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialR
 
             total_attempts = 0
             success = False
-            for _ in processes:
-                total_attempts = multi_value.value
-                success = bool(result.value)
-                found_token = found_token_buf.value.decode() if success else ""
 
-                for process in processes:
-                    process.join()
+            for process in processes:
+                process.join()
+
+            total_attempts = multi_value.value
+            success = bool(result.value)
+            found_token = found_token_buf.value.decode() if success else ""
         end = time.time()
 
         return TrialResult(

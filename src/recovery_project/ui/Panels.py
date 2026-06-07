@@ -24,7 +24,7 @@ def _render_left_panel() -> None:
         st.markdown(
             """
             <div style="padding:1rem 0;color:#5f6673;">
-              Add a local Lottie JSON file to the project root or `assets/animations/`.
+              Add a local Lottie JSON file to the project root or working directory.
             </div>
             """,
             unsafe_allow_html=True,

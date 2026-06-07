@@ -6,8 +6,8 @@ from recovery_project.domain.models import TrialResult
 from recovery_project.experiments.helpers.metrics import compute_summary,save_results
 from recovery_project.experiments.helpers.runner import ExperimentRunner
 from recovery_project.config import load_experiment_config
-from recovery_project.simulation.non_parallel_attacker import send_attack
-from recovery_project.simulation.parallel_attacker import send_attack
+from recovery_project.attacker_algorithms import non_parallel_attacker
+from recovery_project.attacker_algorithms import parallel_attacker
 
 def exp_setup(experiment_name: str,load_exp_path: str):
     data = load_experiment_config(load_exp_path)
@@ -16,12 +16,11 @@ def exp_setup(experiment_name: str,load_exp_path: str):
     all_experiments: list[TrialResult] = []
     all_summaries: list[dict] = []
     for config in data:
-        print(config.strategy)
         if config.strategy == "random" or config.strategy == "exhaustive":
-            attacker = send_attack
+            attacker = non_parallel_attacker.send_attack
             config.name = config.name + "_non_parallel"
         else:
-            attacker = send_attack
+            attacker = parallel_attacker.send_attack
             config.name = config.name + "_parallel"
         # Call bruteforce attack
         runner = ExperimentRunner(config=config, run_trial=attacker)

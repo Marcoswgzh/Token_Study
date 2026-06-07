@@ -2,8 +2,8 @@
 from recovery_project.config import ExperimentConfig
 from recovery_project.experiments.helpers.metrics import compute_summary
 from recovery_project.experiments.helpers.runner import ExperimentRunner
-from recovery_project.simulation.non_parallel_attacker import send_attack
-from recovery_project.simulation.parallel_attacker import send_attack
+from recovery_project.attacker_algorithms.non_parallel_attacker import send_attack
+from recovery_project.attacker_algorithms.parallel_attacker import send_attack
 
 
 def demo_run(demo_config: ExperimentConfig) -> dict:

@@ -3,8 +3,8 @@
 import multiprocessing
 import time
 
-from recovery_project.simulation.bruteforce import guess_parallel
-from recovery_project.simulation.parallel_attacker import split_string
+from recovery_project.attacker_algorithms.bruteforce import guess_parallel
+from recovery_project.attacker_algorithms.parallel_attacker import split_string
 
 
 def test_split_string():

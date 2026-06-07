@@ -5,7 +5,7 @@ import time
 import streamlit as st
 
 from recovery_project.config import ExperimentConfig, TokenPolicy, RateLimitPolicy
-from recovery_project.simulation.parallel_attacker import send_attack, get_token
+from recovery_project.attacker_algorithms.parallel_attacker import send_attack, get_token
 from recovery_project.ui.Fragment_handler import _fragment_rerun
 from recovery_project.ui.Recovery_helper import _go_to_recovery_step
 

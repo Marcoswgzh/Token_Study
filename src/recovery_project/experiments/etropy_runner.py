@@ -1,4 +1,4 @@
-# written by Erika Škodová, Nadja Poltoracki
+# written by Erika Škodová
 from recovery_project.experiments.helpers.exp_setup import exp_setup
 
 if __name__ == '__main__':

@@ -1,12 +1,9 @@
-"""Local entrypoint placeholder.
-
-Later this can start an API server or execute a demo simulation.
-"""
-
-
-def main() -> None:
-    print("Recovery project skeleton is ready. Implement services and experiment runners next.")
-
+#writen by Erika Skodova
+import subprocess
+import sys
+from pathlib import Path
 
 if __name__ == "__main__":
-    main()
+    app_path = Path(__file__).parent / "ui" / "streamlit_app.py"
+    ui_dir = app_path.parent
+    subprocess.run([sys.executable, "-m", "streamlit", "run", str(app_path)],cwd=str(ui_dir))

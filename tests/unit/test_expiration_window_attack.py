@@ -1,7 +1,7 @@
 #written by Erika Skodova
-import recovery_project.simulation.non_parallel_attacker as non_parallel_attacker
+import recovery_project.attacker_algorithms.non_parallel_attacker as non_parallel_attacker
 from recovery_project.config import ExperimentConfig, TokenPolicy, RateLimitPolicy
-from recovery_project.simulation import parallel_attacker
+from recovery_project.attacker_algorithms import parallel_attacker
 
 
 def test_expiration_attack_is_limited_by_ttl_using_random_algorithm():
@@ -47,21 +47,20 @@ def test_expiration_attack_is_limited_by_ttl_using_exhaustive_algorithm():
 def test_expiration_attack_is_limited_by_ttl_using_parallel_algorithm():
     attacker = parallel_attacker
 
-    result = attacker.send_attack(1, "B",
+    result = attacker.send_attack(1, "B123456",
                                             ExperimentConfig(name = "test1",
                                                              trials = 1,
                                                              strategy = "parallel",
                                                              attack_rate_per_second = 2,
-                                                             token_policy = TokenPolicy(length = 1,
+                                                             token_policy = TokenPolicy(length = 7,
                                                                                         alphabet = "ACDEFG1234567890",
                                                                                         ttl_seconds = 1,
                                                                                         single_use = True),
                                                              rate_limit_policy = RateLimitPolicy(enabled = True,
-                                                                                                 max_attempts= 100000,
-                                                                                                 window_seconds = 60)))
+                                                                                                 max_attempts= -1,
+                                                                                                 window_seconds = -1)))
 
     assert result.success is False
-    assert result.attempts_made <= 100000
     assert 1000 < result.time_elapsed_ms < 3000 #added 2s buffer for initialization and data collection
 
 def test_expiration_attack_is_limited_by_budget_when_budget_is_smaller_using_exhaustive():

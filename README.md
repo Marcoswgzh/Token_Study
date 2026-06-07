@@ -2,65 +2,63 @@
 
 Repository for our computer security project on account recovery mechanisms (password reset tokens, attack simulations, and defenses).
 
-## What will be built here
+## Project content
 
 - Minimal authentication + password recovery flow in Python
 - Recovery token validation with configurable entropy / TTL / single-use behavior
-- Brute-force attack simulation against recovery endpoints
-- Rate-limiting defense experiments
-- Result export for plots/tables used in the report and poster
+- 3 attack simulations against recovery endpoints (1 parallelized, 2 sequential)
+- Entropy,expiration, and rate-limiting experiments
+- Experiment results and their summaries
+- User adjustable experiments through GUI
 
 ## Repository layout
 
 ```text
-configs/experiments/   experiment configs for RQ1 / RQ2 / RQ3
-data/                  generated data (raw / processed / seeds)
-docs/                  proposal, report, poster, diagrams
-results/               experiment outputs, figures, tables
-scripts/               small CLI entrypoints (run experiments, generate plots)
+configs/experiments/   experiment configs for RQ1 / RQ2 / RQ3 in .json format
+data/                  results from experiments (raw / processed )
+docs/                  additional documents
+scripts/               small CLI entrypoints (gathering hardware specs)
 src/recovery_project/  project code
-tests/                 unit / integration / simulation tests
+tests/                 unit tests
 ```
 
 ## Code structure (`src/recovery_project`)
 
+- `attacker_algorithms/` algorithms and helper used for breaking the tokens
 - `domain/` models (`User`, `RecoveryToken`, `RecoveryAttempt`)
-- `services/` token generation, recovery flow, rate limiting
-- `repositories/` storage adapters (start with in-memory)
-- `simulation/` attacker and legitimate-user behavior
-- `experiments/` runners and metrics aggregation
-- `api/` optional HTTP layer if we decide to expose endpoints
+- `experiments/` experiment runners, metrics, helpers, and connector classes
+- `repositories/` storage adapters (in memory)
+- `services/` authentication, email validation, token generation, recovery flow, rate limiting
+- `ui/` simple user-friendly GUI
+- `utils/`  logging utility
+- `config.py` loading and handling experiment configurations
+- `main.py` GUI launcher
 
-## Suggested build order
-
-1. Implement `token_service` + `recovery_service`
-2. Add in-memory repositories
-3. Build attacker simulation for brute-force token guessing
-4. Add experiment runner for RQ1/RQ2/RQ3 configs
-5. Add result export and plotting
-6. (Optional) wrap it with an API for demo purposes
-
-## Local setup (when you start coding)
+## Dependency and environment
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -e .[dev,analysis]
+```
+
+## Tests
+
+```bash
 pytest
 ```
 
 ## Demo UI (Streamlit)
 
-If you want a quick UI for the authentication/recovery flow:
+To run GUI through terminal:
 
 ```bash
-pip install -e .[dev,ui]
 streamlit run src/recovery_project/ui/streamlit_app.py
 ```
 
-The app looks for `cute_robot.json` in the project root (or `assets/animations/cute_robot.json`).
+Otherwise, use `src/recovery_project/main.py`
 
 ## Architecture
 
 Authentication and account-recovery architecture:
-- `docs/architecture/authentication_architecture.md`
+- `docs/authentication_architecture.md`

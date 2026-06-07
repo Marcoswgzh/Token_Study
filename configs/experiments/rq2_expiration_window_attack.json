@@ -1,9 +1,9 @@
 [
   {
-    "name": "rq2_expiration_hex_len4_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len4_parallel_ttl10",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 4,
       "alphabet": "0123456789ABCDEF",
@@ -11,118 +11,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_hex_len4_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 4,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len4_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 4,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len4_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 4,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len4_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 4,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 30,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len4_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 4,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len4_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 4,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len5_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len5_parallel_ttl10",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 5,
       "alphabet": "0123456789ABCDEF",
@@ -130,67 +28,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_hex_len5_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len5_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len5_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len5_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len5_parallel_ttl30",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 5,
       "alphabet": "0123456789ABCDEF",
@@ -198,50 +45,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_hex_len5_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len5_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len6_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len6_parallel_ttl10",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 6,
       "alphabet": "0123456789ABCDEF",
@@ -249,67 +62,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_hex_len6_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 6,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len6_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 6,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len6_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 6,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len6_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len6_parallel_ttl30",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 6,
       "alphabet": "0123456789ABCDEF",
@@ -317,33 +79,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_hex_len6_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 6,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len6_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len6_parallel_ttl60",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 6,
       "alphabet": "0123456789ABCDEF",
@@ -351,16 +96,33 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_hex_len7_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len6_parallel_ttl120",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len7_parallel_ttl10",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 7,
       "alphabet": "0123456789ABCDEF",
@@ -368,16 +130,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_hex_len7_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len7_parallel_ttl120",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 7,
       "alphabet": "0123456789ABCDEF",
@@ -385,50 +147,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_hex_len7_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 7,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len7_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 7,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len7_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len7_parallel_ttl30",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 7,
       "alphabet": "0123456789ABCDEF",
@@ -436,33 +164,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_hex_len7_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 7,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len7_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len7_parallel_ttl60",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 7,
       "alphabet": "0123456789ABCDEF",
@@ -470,16 +181,152 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len4_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_hex_len8_parallel_ttl10",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len8_parallel_ttl30",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len8_parallel_ttl60",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len8_parallel_ttl120",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len9_parallel_ttl10",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len9_parallel_ttl30",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len9_parallel_ttl60",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_len9_parallel_ttl120",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len4_ttl10",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 4,
       "alphabet": "0123456789",
@@ -487,118 +334,986 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len4_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_parallel__len5_ttl10",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len6_ttl10",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len7_ttl10",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len7_ttl30",
+    "trials": 100,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len8_ttl10",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len8_ttl30",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len8_ttl60",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len8_ttl120",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len9_ttl10",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len9_ttl30",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len9_ttl60",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_parallel__len9_ttl120",
+    "trials": 10,
+   "strategy" : "parallel",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len4_ttl10",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len5_ttl10",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len6_ttl10",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len6_ttl30",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len7_ttl10",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len7_ttl120",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len7_ttl30",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len7_ttl60",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len8_ttl10",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len8_ttl30",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len8_ttl60",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len8_ttl120",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len9_ttl10",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len9_ttl30",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len9_ttl60",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_random__len9_ttl120",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+
+  {
+    "name": "rq2_expiration_dec_random__len4_ttl10",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 4,
       "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len5_ttl10",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len6_ttl10",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len6_ttl30",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len7_ttl10",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len7_ttl30",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len7_ttl60",
+    "trials": 100,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len8_ttl10",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len8_ttl30",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len8_ttl60",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len8_ttl120",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789",
       "ttl_seconds": 120,
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len4_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_random__len9_ttl10",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len9_ttl30",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len9_ttl60",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_random__len9_ttl120",
+    "trials": 10,
+   "strategy" : "random",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len4_ttl10",
+    "trials": 100,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 4,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len5_ttl10",
+    "trials": 100,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 5,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len6_ttl10",
+    "trials": 100,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 6,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len7_ttl10",
+    "trials": 100,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len7_ttl30",
+    "trials": 100,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 7,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len8_ttl10",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len8_ttl30",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len8_ttl60",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len8_ttl120",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 8,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len9_ttl10",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 10,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len9_ttl30",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 30,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len9_ttl60",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 60,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_hex_exhaustive__len9_ttl120",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
+    "token_policy": {
+      "length": 9,
+      "alphabet": "0123456789ABCDEF",
+      "ttl_seconds": 120,
+      "single_use": true
+    },
+    "rate_limit_policy": {
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
+    }
+  },
+  {
+    "name": "rq2_expiration_dec_exhaustive__len4_ttl10",
+    "trials": 100,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 4,
       "alphabet": "0123456789",
-      "ttl_seconds": 180,
+      "ttl_seconds": 10,
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len4_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 4,
-      "alphabet": "0123456789",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len4_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 4,
-      "alphabet": "0123456789",
-      "ttl_seconds": 30,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len4_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 4,
-      "alphabet": "0123456789",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len4_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 4,
-      "alphabet": "0123456789",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len5_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_exhaustive__len5_ttl10",
+    "trials": 100,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 5,
       "alphabet": "0123456789",
@@ -606,118 +1321,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len5_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len5_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len5_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len5_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789",
-      "ttl_seconds": 30,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len5_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len5_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 5,
-      "alphabet": "0123456789",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len6_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_exhaustive__len6_ttl10",
+    "trials": 100,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 6,
       "alphabet": "0123456789",
@@ -725,118 +1338,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len6_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 6,
-      "alphabet": "0123456789",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len6_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 6,
-      "alphabet": "0123456789",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len6_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 6,
-      "alphabet": "0123456789",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len6_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 6,
-      "alphabet": "0123456789",
-      "ttl_seconds": 30,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len6_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 6,
-      "alphabet": "0123456789",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len6_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 6,
-      "alphabet": "0123456789",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len7_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_exhaustive_len7_ttl10",
+    "trials": 100,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 7,
       "alphabet": "0123456789",
@@ -844,118 +1355,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len7_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 7,
-      "alphabet": "0123456789",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len7_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 7,
-      "alphabet": "0123456789",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len7_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 7,
-      "alphabet": "0123456789",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len7_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 7,
-      "alphabet": "0123456789",
-      "ttl_seconds": 30,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len7_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 7,
-      "alphabet": "0123456789",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len7_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 7,
-      "alphabet": "0123456789",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len8_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_exhaustive_len8_ttl10",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 8,
       "alphabet": "0123456789",
@@ -963,16 +1372,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len8_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_exhaustive_len8_ttl30",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 8,
       "alphabet": "0123456789",
@@ -980,101 +1389,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len8_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len8_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len8_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len8_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len8_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len9_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_exhaustive__len9_ttl10",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 9,
       "alphabet": "0123456789",
@@ -1082,16 +1406,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len9_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_exhaustive__len9_ttl30",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 9,
       "alphabet": "0123456789",
@@ -1099,16 +1423,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len9_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_exhaustive__len9_ttl60",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 9,
       "alphabet": "0123456789",
@@ -1116,16 +1440,16 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   },
   {
-    "name": "rq2_expiration_numeric_len9_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
+    "name": "rq2_expiration_dec_exhaustive__len9_ttl120",
+    "trials": 10,
+   "strategy" : "exhaustive",
+    "attack_rate_per_second": -1,
     "token_policy": {
       "length": 9,
       "alphabet": "0123456789",
@@ -1133,536 +1457,12 @@
       "single_use": true
     },
     "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len9_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 9,
-      "alphabet": "0123456789",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len9_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 9,
-      "alphabet": "0123456789",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len9_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 9,
-      "alphabet": "0123456789",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len10_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789",
-      "ttl_seconds": 10,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len10_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789",
-      "ttl_seconds": 30,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len10_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len10_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len10_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len10_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_numeric_len10_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len8_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 10,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len8_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 30,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len8_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len8_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len8_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len8_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len8_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 8,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len9_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 9,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 10,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len9_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 9,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 30,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len9_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 9,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len9_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 9,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len9_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 9,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len9_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 9,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len9_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 9,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len10_ttl10",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 10,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len10_ttl30",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 30,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len10_ttl60",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 60,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len10_ttl120",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 120,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len10_ttl180",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 180,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len10_ttl240",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 240,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
-    }
-  },
-  {
-    "name": "rq2_expiration_hex_len10_ttl300",
-    "trials": 1000,
-    "attack_attempt_budget": 999999,
-    "attack_rate_per_second": 999999,
-    "token_policy": {
-      "length": 10,
-      "alphabet": "0123456789ABCDEF",
-      "ttl_seconds": 300,
-      "single_use": true
-    },
-    "rate_limit_policy": {
-      "enabled": false,
-      "max_attempts": 999999,
-      "window_seconds": 60
+      "enabled": true,
+      "max_attempts": -1,
+      "window_seconds": -1
     }
   }
 ]
+
+
+
