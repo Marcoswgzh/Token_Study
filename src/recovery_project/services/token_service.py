@@ -7,20 +7,17 @@ from datetime import datetime
 from recovery_project.services.rate_limiter import validation_limiter
 from recovery_project.repositories.token_repository import TokenRepository
 
-# This token generation and validation is mainly for the first reasearch question, where we have to vary the entropy of the token
-
-# Characters included in the token. We can increase this by adding string.digits (digits from 0 to 9) and/or string.punctuation (special characters)
-default_alphabet = string.ascii_letters
-
 # Writer: Anna Kálmánczhelyi
+# Reviewer: Nadja Poltoracki - i6403661
 class TokenService:
     def __init__(self, alphabet: str = "0123456789ABCDEF", token_length: int=5):
         self.alphabet = alphabet
         self.token_length = token_length
 
-# Generates the token using a given length. secrets.choice takes a random character from a sequence
-# then create the token hash with the hashlib library
+# Generates the token using a given length.
+# secrets.choice takes a random character from a sequence then create the token hash with the hashlib library
 # Writer: Anna Kálmánczhelyi
+# Reviewer: Nadja Poltoracki - i6403661
     def generate_token(self) -> tuple:
         token = "".join(secrets.choice(self.alphabet) for _ in range(self.token_length))
         token_hash = hashlib.sha256(token.encode()).hexdigest()

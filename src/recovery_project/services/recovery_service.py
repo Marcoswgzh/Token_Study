@@ -5,6 +5,7 @@ Core responsibilities:
 - validate token (entropy/TTL/single-use behavior)
 - reset password on successful recovery
 """
+from __future__ import annotations
 
 # Writer: Anna Kálmánczhelyi
 from datetime import datetime, timedelta
@@ -17,7 +18,7 @@ request_limiter = get_request_limiter()
 validation_limiter = get_validation_limiter()
 token_service = TokenService()
 # Writer: Anna Kálmánczhelyi
-# Sofya Grishkova - i6397764
+# Reviwer: Sofya Grishkova - i6397764
 def issue_token(email: str) -> str | None:
     # do not issue endless tokens for the same account
     if request_limiter.is_locked(email):
@@ -43,28 +44,6 @@ def issue_token(email: str) -> str | None:
 # Sofya Grishkova - i6397764
 def reset_password(email: str, new_password: str) -> bool:
     return update_password(email, new_password)
-
-# Writer: Anna Kálmánczhelyi
-# For testing purposes
-if __name__ == "__main__":
-    #test password reset and token generation in 1 workflow:
-    #create user and confirm it
-    #create token for user
-    token = issue_token("example@example.com")
-    print(f"generated token: {token}")
-
-    #test if token is valid
-    is_valid = validate_token("example@example.com", token)
-    print(f"is the token valid? {is_valid}")
-
-    #based on validity result, reset password and store it
-    if is_valid:
-        is_reset = reset_password("example@example.com", "new_password")
-        print(f"is password reset? {is_reset}")
-
-    #check if the same token can be validation (it should fail if all went well)
-    is_valid_again = validate_token("example@example.com", token)
-    print(f"is the token valid on a second use? {is_valid_again}")
 
 
     
