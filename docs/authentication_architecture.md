@@ -2,10 +2,10 @@
 
 ## 1) What we are building
 
-Simple architecture to demonstrate weakness in recovery systems such as password resetting.
-Project consists of 2 parts:
-- demo application -> GUI that user can interact with and see the results in real time
-- runnable experiments -> series of trials (written in .json files) to get accurate results for analysis
+Simple architecture to demonstrate weaknesses in recovery systems for password resetting.
+The project consists of 2 parts:
+- demo application -> GUI that the user can interact with and see the results in real time
+- runnable experiments -> series of trials (configurations written in .json files) to get accurate results for analysis
 
 ## 2) Main decision
 
@@ -15,7 +15,8 @@ We will follow this recovery pipline logic:
 - system sends a reset link with token in URL
 - user opens link and sets a new password
 
-With this backend will behave very similar as in teh real-world while keeping the frontend simple and user-friendly.
+With this, the backend will behave very similar to real-world applications,
+while keeping the frontend simple and user-friendly for experiment demonstration purposes.
 
 ## 3) Architecture layers
 
@@ -28,6 +29,7 @@ With this backend will behave very similar as in teh real-world while keeping th
 
 2. `Services` (`src/recovery_project/services/`)
 - `auth_service` for sessions/logout
+- `password_service` for password handling
 - `email-verifier` for simple verifying of the email validity
 - `token_service` for secure token generation/check
 - `recovery_service` for full recovery workflow

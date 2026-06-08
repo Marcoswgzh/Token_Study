@@ -37,13 +37,13 @@ def _write_users(users: dict[str, str]) -> None:
             fh.write(f"{email}:{stored_hash}\n")
 
 
-# Main writer: Sofya Grishkova - i6397764
+# Main writer: Timea Vojcikova - i6377033
 # Email check to find user
 def user_exists(email: str) -> bool:
     return email in _read_users()
 
 
-# Main writer: Sofya Grishkova - i6397764
+# Main writer: Timea Vojcikova - i6377033
 def register_user(email: str, password: str) -> bool:
     users = _read_users()
     if email in users:
@@ -63,7 +63,7 @@ def login_user(email: str, password: str) -> bool:
         return False
     return PasswordService.verify_password(password, stored_hash)
 
-# Main writer: Sofya Grishkova - i6397764
+# Main writer: Timea Vojcikova - i6377033
 def update_password(email: str, new_password: str) -> bool:
     users = _read_users()
     if email not in users:
