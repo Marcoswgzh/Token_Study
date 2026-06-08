@@ -31,7 +31,7 @@ def _add_break_button() -> None:
                 attack_rate_per_second=sys.maxsize,
                 token_policy=TokenPolicy(length=5,
                                          alphabet="1234567890ABCDEF",
-                                         ttl_seconds=2500,
+                                         ttl_seconds=-1,
                                          single_use=True),
                 rate_limit_policy=RateLimitPolicy(enabled=False,
                                                   max_attempts=sys.maxsize,

@@ -5,9 +5,9 @@ Repository for our computer security project on account recovery mechanisms (pas
 ## Project content
 
 - Minimal authentication + password recovery flow in Python
-- Recovery token validation with configurable entropy / TTL / single-use behavior
+- Recovery token validation with configurable complexity / TTL / single-use behavior
 - 3 attack simulations against recovery endpoints (1 parallelized, 2 sequential)
-- Entropy, expiration, and rate-limiting experiments
+- Complexity, expiration, and rate-limiting experiments
 - Experiment results and their summaries
 - User adjustable experiments through GUI
 

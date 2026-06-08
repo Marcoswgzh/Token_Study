@@ -9,7 +9,7 @@ from datetime import datetime
 
 from recovery_project.config import ExperimentConfig
 from recovery_project.domain.models import TrialResult
-from recovery_project.attacker_algorithms.bruteforce import guess_parallel
+import recovery_project.attacker_algorithms.bruteforce as bf
 
 def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialResult:
         # Initialize variables
@@ -38,7 +38,7 @@ def send_attack(trail_id: int, target: str, configs: ExperimentConfig) -> TrialR
 
             # Run parallel bruteforce
             for chunk in alphabet_chunks:
-                process = multiprocessing.Process(target=guess_parallel, args=(ttl_seconds + time.time(), target, chunk, alphabet, suffix_length, multi_value, result,found_token_buf))
+                process = multiprocessing.Process(target=bf.guess_parallel, args=(ttl_seconds + time.time(), target, chunk, alphabet, suffix_length, multi_value, result,found_token_buf))
                 processes.append(process)
                 process.start()
 

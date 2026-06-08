@@ -40,7 +40,7 @@ while keeping the frontend simple and user-friendly for experiment demonstration
 - in-memory storage -> simple txt file 
 
 4. `Experiments` (`src/recovery_project/experiments/`, `configs/experiments`)
-- run scenarios for entropy, TTL, rate limiting, and connecting class for experiments from gui
+- run scenarios for complexity, TTL, rate limiting, and connecting class for experiments from gui
 - export metrics for report/poster
 
 5. `Attack Algorithms` (`src/recovery_project/attacker_algorithms/`)
@@ -96,7 +96,7 @@ UI reads `token` from URL and calls:
 
 ## 6) RQs experiments set up
 
-1. **RQ1 (entropy)**  
+1. **RQ1 (complexity)**  
 Testing different lengths of token on 2 different alphabets.
 Comparing all 3 algorithms.
 
