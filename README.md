@@ -64,3 +64,6 @@ The app looks for `cute_robot.json` in the project root (or `assets/animations/c
 
 Authentication and account-recovery architecture:
 - `docs/architecture/authentication_architecture.md`
+
+Detailed guide to the current code and how its parts interact:
+- `docs/CODE_WALKTHROUGH.md`
