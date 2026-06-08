@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from password_service import PasswordService
+from recovery_project.services.password_service import PasswordService
 
 USER_FILE = Path(__file__).with_name("users.txt")
 

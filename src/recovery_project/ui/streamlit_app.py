@@ -17,10 +17,9 @@ if root_route not in sys.path:
 
 # Sofya Grishkova (i6397764)
 def _inject_styles() -> None:
-    css_path = Path(__file__).parent / "UI_design.css"
+    css_path = Path(__file__).resolve().parent / "UI_design.css"
     with open(css_path) as f:
-        css = f.read()
-    st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # Timea Vojcikova - i6377033
 def _init_state() -> None:

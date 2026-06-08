@@ -400,17 +400,17 @@ div[data-testid="stVerticalBlock"]:has(.ui-shell-marker),
     border-radius: 999px;
     border: 1px solid rgba(95, 168, 255, 0.26);
     background: linear-gradient(180deg, rgba(95, 168, 255, 0.16) 0%, rgba(47, 109, 246, 0.10) 100%);
-    color: white;
+    color: white !important;
     font-weight: 600;
     min-height: 40px;
     padding: 0.35rem 0.95rem;
-    box-shadow: 0 8px 20px rgba(47, 109, 246, 0.10);
+    box-shadow: 0 8px 20px rgba(47, 109, 246, 0.10) !important;
 }
 
 .stButton > button:hover {
-    border-color: rgba(95, 168, 255, 0.38);
+    border-color: rgba(95, 168, 255, 0.38) !important;
     background: linear-gradient(180deg, rgba(95, 168, 255, 0.20) 0%, rgba(47, 109, 246, 0.14) 100%);
-    box-shadow: 0 10px 24px rgba(47, 109, 246, 0.16);
+    box-shadow: 0 10px 24px rgba(47, 109, 246, 0.16) !important;
 }
 
 .stButton > button:focus {
@@ -446,7 +446,7 @@ div[data-testid="stVerticalBlock"]:has(.ui-shell-marker),
 }
 
 .recovery-hint b {
-    color: #cfe0ff;
+    color: #cfe0ff !important;
     font-weight: 600;
 }
 
