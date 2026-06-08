@@ -18,7 +18,7 @@ from recovery_project.domain.models import TrialResult
 # So we will use simpler sequential algorithms
 # We will see in the results that this change will not affect much, since the rate limiter will block the attacker anyway
 
-def send_attack(trial_id : int, target_token: str, configs: ExperimentConfig) -> TrialResult:
+def send_attack_sequential(trial_id : int, target_token: str, configs: ExperimentConfig) -> TrialResult:
     # initialize values
     tp = configs.token_policy
     rlp = configs.rate_limit_policy

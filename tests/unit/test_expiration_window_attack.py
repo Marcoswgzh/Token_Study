@@ -7,8 +7,8 @@ from recovery_project.attacker_algorithms import parallel_attacker
 def test_expiration_attack_is_limited_by_ttl_using_random_algorithm():
     attacker = non_parallel_attacker
 
-    result = attacker.send_attack(1, "B",
-                                  ExperimentConfig(name = "test1",
+    result = attacker.send_attack_sequential(1, "B",
+                                             ExperimentConfig(name = "test1",
                                                              trials = 1,
                                                              strategy = "random",
                                                              attack_rate_per_second = 2,
@@ -27,8 +27,8 @@ def test_expiration_attack_is_limited_by_ttl_using_random_algorithm():
 def test_expiration_attack_is_limited_by_ttl_using_exhaustive_algorithm():
     attacker = non_parallel_attacker
 
-    result = attacker.send_attack(1, "BCDEFGH",
-                                  ExperimentConfig(name = "test1",
+    result = attacker.send_attack_sequential(1, "BCDEFGH",
+                                             ExperimentConfig(name = "test1",
                                                              trials = 1,
                                                              strategy = "exhaustive",
                                                              attack_rate_per_second = 2,
@@ -47,8 +47,8 @@ def test_expiration_attack_is_limited_by_ttl_using_exhaustive_algorithm():
 def test_expiration_attack_is_limited_by_ttl_using_parallel_algorithm():
     attacker = parallel_attacker
 
-    result = attacker.send_attack(1, "B123456",
-                                            ExperimentConfig(name = "test1",
+    result = attacker.send_attack_parallel(1, "B123456",
+                                           ExperimentConfig(name = "test1",
                                                              trials = 1,
                                                              strategy = "parallel",
                                                              attack_rate_per_second = 2,
@@ -66,8 +66,8 @@ def test_expiration_attack_is_limited_by_ttl_using_parallel_algorithm():
 def test_expiration_attack_is_limited_by_budget_when_budget_is_smaller_using_exhaustive():
     attacker = non_parallel_attacker
 
-    result=attacker.send_attack(1, "B",
-                                ExperimentConfig(name="test1",
+    result=attacker.send_attack_sequential(1, "B",
+                                           ExperimentConfig(name="test1",
                                                      trials=1,
                                                      strategy="exhaustive",
                                                      attack_rate_per_second=2,
@@ -87,8 +87,8 @@ def test_expiration_attack_is_limited_by_budget_when_budget_is_smaller_using_exh
 def test_expiration_attack_is_limited_by_budget_when_budget_is_smaller_using_random():
     attacker = non_parallel_attacker
 
-    result=attacker.send_attack(1, "B",
-                                ExperimentConfig(name="test1",
+    result=attacker.send_attack_sequential(1, "B",
+                                           ExperimentConfig(name="test1",
                                                      trials=1,
                                                      strategy="random",
                                                      attack_rate_per_second=2,
@@ -107,8 +107,8 @@ def test_expiration_attack_is_limited_by_budget_when_budget_is_smaller_using_ran
 def test_expiration_attack_successful_when_using_exhaustive():
     attacker = non_parallel_attacker
 
-    result=attacker.send_attack(1, "B",
-                                ExperimentConfig(name="test1",
+    result=attacker.send_attack_sequential(1, "B",
+                                           ExperimentConfig(name="test1",
                                                      trials=1,
                                                      strategy="exhaustive",
                                                      attack_rate_per_second=2,
@@ -129,8 +129,8 @@ def test_expiration_attack_successful_when_using_exhaustive():
 def test_expiration_attack_successful_when_using_random():
     attacker = non_parallel_attacker
 
-    result=attacker.send_attack(1, "B",
-                                ExperimentConfig(name="test1",
+    result=attacker.send_attack_sequential(1, "B",
+                                           ExperimentConfig(name="test1",
                                                      trials=1,
                                                      strategy="random",
                                                      attack_rate_per_second=2,
@@ -149,8 +149,8 @@ def test_expiration_attack_successful_when_using_random():
 def test_expiration_attack_successful_when_using_random_with_alphabet_len_1():
     attacker = non_parallel_attacker
 
-    result=attacker.send_attack(1, "B",
-                                ExperimentConfig(name="test1",
+    result=attacker.send_attack_sequential(1, "B",
+                                           ExperimentConfig(name="test1",
                                                      trials=1,
                                                      strategy="random",
                                                      attack_rate_per_second=2,
@@ -170,8 +170,8 @@ def test_expiration_attack_successful_when_using_random_with_alphabet_len_1():
 def test_expiration_attack_successful_when_using_parallel():
     attacker = parallel_attacker
 
-    result=attacker.send_attack(1, "B",
-                                    ExperimentConfig(name="test1",
+    result=attacker.send_attack_parallel(1, "B",
+                                         ExperimentConfig(name="test1",
                                                      trials=1,
                                                      strategy="parallel",
                                                      attack_rate_per_second=2,

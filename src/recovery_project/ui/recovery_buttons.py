@@ -5,7 +5,7 @@ import time
 import streamlit as st
 
 from recovery_project.config import ExperimentConfig, TokenPolicy, RateLimitPolicy
-from recovery_project.attacker_algorithms.parallel_attacker import send_attack, get_token
+from recovery_project.attacker_algorithms.parallel_attacker import send_attack_parallel, get_token
 from recovery_project.ui.Fragment_handler import _fragment_rerun
 from recovery_project.ui.Recovery_helper import _go_to_recovery_step
 
@@ -36,7 +36,7 @@ def _add_break_button() -> None:
                 rate_limit_policy=RateLimitPolicy(enabled=False,
                                                   max_attempts=sys.maxsize,
                                                   window_seconds=sys.maxsize))
-            result = send_attack(1, st.session_state.issued_token, configs)
+            result = send_attack_parallel(1, st.session_state.issued_token, configs)
         if result.success:
             st.session_state['token_input'] = get_token()
             st.warning("Token found.")

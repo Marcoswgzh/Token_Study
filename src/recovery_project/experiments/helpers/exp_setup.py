@@ -20,10 +20,10 @@ def exp_setup(experiment_name: str,load_exp_path: str):
     # Pick correct attacker
     for config in data:
         if config.strategy == "random" or config.strategy == "exhaustive":
-            attacker = non_parallel_attacker.send_attack
+            attacker = non_parallel_attacker.send_attack_sequential
             config.name = config.name + "_non_parallel"
         else:
-            attacker = parallel_attacker.send_attack
+            attacker = parallel_attacker.send_attack_parallel
             config.name = config.name + "_parallel"
         # Call attack
         runner = ExperimentRunner(config=config, run_trial=attacker)
