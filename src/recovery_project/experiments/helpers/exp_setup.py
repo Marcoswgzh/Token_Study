@@ -6,8 +6,8 @@ from recovery_project.domain.models import TrialResult
 from recovery_project.experiments.helpers.metrics import compute_summary,save_results
 from recovery_project.experiments.helpers.runner import ExperimentRunner
 from recovery_project.config import load_experiment_config
-from recovery_project.attacker_algorithms import non_parallel_attacker
-from recovery_project.attacker_algorithms import parallel_attacker
+from recovery_project.attacker_algorithms.non_parallel_attacker import send_attack_sequential
+from recovery_project.attacker_algorithms.parallel_attacker import send_attack_parallel
 
 # Helper class connecting all experiment callers to the correct attacker and result handling
 def exp_setup(experiment_name: str,load_exp_path: str):
@@ -20,10 +20,10 @@ def exp_setup(experiment_name: str,load_exp_path: str):
     # Pick correct attacker
     for config in data:
         if config.strategy == "random" or config.strategy == "exhaustive":
-            attacker = non_parallel_attacker.send_attack_sequential
+            attacker = send_attack_sequential
             config.name = config.name + "_non_parallel"
         else:
-            attacker = parallel_attacker.send_attack_parallel
+            attacker = send_attack_parallel
             config.name = config.name + "_parallel"
         # Call attack
         runner = ExperimentRunner(config=config, run_trial=attacker)

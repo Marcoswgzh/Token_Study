@@ -56,7 +56,7 @@ To run GUI through terminal:
 streamlit run src/recovery_project/ui/streamlit_app.py
 ```
 
-Otherwise, use `src/recovery_project/main.py`
+Otherwise, use `src/recovery_project/main.py` (Due to a Windows multiprocessing limitation with how Python resolves module paths when launching via main.py module, the parallel brute-force attack may fail on first launch. If this occurs, run the application directly from the terminal)
 
 ## Architecture
 
