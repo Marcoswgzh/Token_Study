@@ -13,8 +13,8 @@ from datetime import datetime
 from recovery_project.config import ExperimentConfig
 from recovery_project.domain.models import TrialResult
 
-# Exhaustive and random bruteforce attacks on one specific user. Returns a dictionary with different metrics
-# We are not using parallel guessing algorithms, since it would require making the rate limiter parallel to avoid race conditions
+# Exhaustive and random bruteforce attacks on one specific user
+# We are not using parallel guessing algorithms, since it could introduce race conditions
 # So we will use simpler sequential algorithms
 # We will see in the results that this change will not affect much, since the rate limiter will block the attacker anyway
 
